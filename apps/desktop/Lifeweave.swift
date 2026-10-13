@@ -260,7 +260,7 @@ final class LifeweaveApp: NSObject, NSApplicationDelegate, WKNavigationDelegate,
     private func checkRenderedWorkspace(attempt: Int) {
         guard smoke, let webView, origin?.allows(webView.url) == true else { return }
         // A fixed DOM predicate in test mode; no user-supplied scripts or native bridge.
-        webView.evaluateJavaScript("Boolean(document.querySelector('#app .shell') && document.querySelector('#workspace-choice'))") {
+        webView.evaluateJavaScript("Boolean(document.querySelector('#app .shell') && document.querySelector('#workspace-choice') && document.querySelectorAll('.daily-board .board-move').length === 3 && document.querySelectorAll('.assistant-composer form input').length === 1 && document.querySelector('.workspace-menu') && !document.querySelector('.workspace-menu').open)") {
             [weak self] value, error in
             guard let self else { return }
             if error == nil && value as? Bool == true {

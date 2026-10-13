@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-13T10:31:08.509Z",
+  "verifiedAt": "2026-10-13T14:24:54.086Z",
   "status": "local-qa-verified",
   "platform": "macos",
   "architecture": "arm64",
   "minimumMacOS": "13.5",
   "artifact": {
     "relativePath": "dist/desktop/Lifeweave.app",
-    "treeSha256": "e220d21f66e6666bff6913f8386213e27cf95bd6fd00ba6d2a406ffaed286365",
+    "treeSha256": "383b13ee06e1e387b46be595032ab5b000bb2df866a5b788e498e6a45990e0a4",
     "treeHashMethod": "SHA256 of sorted UTF-8 tab-separated relative file path and file SHA256 records, or relative symlink target records; each record ends in newline.",
-    "nativeExecutableSha256": "b66cbd423c874d7c8e0ae17c650c1f79d8e5a63acbb686ea5dd575abba2220bb",
+    "nativeExecutableSha256": "7526aa0562eea2723cb5fe6b5bf2aaf99f1b94ff32cbb6831d839f43f5bcec8f",
     "infoPlistSha256": "5316f844f1eac91d846154bfc277ae7ab879c874f2619381211c95b02e8c1048",
-    "bundleManifestSha256": "c65bfc860ed89fafff23ada5bb18472983d1a88036941dc464894abbaf12d1b8",
-    "codeResourcesSha256": "27c6f2c14886e4461cecc80785a782c222e96ddd518bc7a1520f7d91d23fdf4a",
+    "bundleManifestSha256": "558bc91144c6bd3fc8184ce77fb28cc29dc7c0f40e02270f87708af4fcc1496f",
+    "codeResourcesSha256": "bd075e3e2e797e72a3761e032185d0655e64d3d3bb6de7fa097ca8d761c22cb6",
     "nodeSha256": "b49e3d4673bd14b343ff17111df6696e3961701bf36ed981f878e57e24f559ba",
     "nodeSourceSha256": "743cbaf12bd9323937b85f6297d8182b086526510c9f9c5875fa74d2aad9072d",
     "nodeLicenseSha256": "148eacf7863ef4329224a29398623077200a27194aa075569faf4a0a85566ca5",
-    "sourceShellSha256": "40fa4498a6221f8599f945dcaf16ea7ae1b9f5a353ed3a513b85c6af6639e53b",
+    "sourceShellSha256": "5ec5c2921a9876d22d1c6a852288ea02b640b1a07080ba3d3c9507d191bde412",
     "sourceBuilderSha256": "4c75fea09583915e9c1afbbb54f6ca2b86293ca6cfefcaa47066977a202c8a8f",
-    "webAppSourceSha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
+    "webAppSourceSha256": "f712f7d0413933b57759c262c5e60959fa1f5f92f230d6fc453e9cef3eca7d53"
   },
   "runtime": {
     "source": "supplied-workspace-runtime",
@@ -37,8 +37,8 @@
     "appStoreAccepted": false
   },
   "packaging": {
-    "publicSourceFiles": 59,
-    "bundleFileCount": 65,
+    "publicSourceFiles": 63,
+    "bundleFileCount": 69,
     "resourceHashesMatch": true,
     "frozenSourceHashesMatch": true,
     "finiteWebAssets": 10,
@@ -91,5 +91,5 @@
     "Live provider connections, hosted sync, paid capabilities and multi-tenant business operations require separate integration acceptance."
   ],
   "distributionReady": false,
-  "release": "0.1.0-alpha.3"
+  "release": "0.1.0-alpha.4"
 }

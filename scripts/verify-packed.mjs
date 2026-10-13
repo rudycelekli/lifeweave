@@ -25,7 +25,7 @@ try{
   const consumer=spawnSync(process.execPath,['--input-type=module','-e',`
     import assert from 'node:assert/strict';
     const core=await import('@lifeweave/core');
-    for(const key of ['buildSharedContext','compileIntent','recordContextCorrection','buildOutcomeLedger','recordPlanOutcome'])assert.equal(typeof core[key],'function');
+    for(const key of ['buildSharedContext','compileIntent','recordContextCorrection','buildOutcomeLedger','recordPlanOutcome','composeDailyBoard','compileAssistantResponse','validateAssistantResponse'])assert.equal(typeof core[key],'function');
     for(const name of ['ui','connectors','planner'])await import('@lifeweave/'+name);
   `],{cwd:path.join(temp,'sdk'),encoding:'utf8'});
   assert.equal(consumer.status,0,consumer.stderr);
@@ -36,7 +36,7 @@ try{
   const now='2026-10-13T16:00:00.000Z';host=await createLocalServer({port:0,dataDir:path.join(temp,'state'),clock:()=>now});
   const response=await fetch(host.origin+'/api/bootstrap'),cookie=response.headers.get('set-cookie').split(';')[0],csrf=(await response.json()).csrfToken;
   const get=async route=>{const r=await fetch(host.origin+route,{headers:{Cookie:cookie}});assert.equal(r.status,200);return r.json();};
-  const state=await get('/api/state?workspace=demo');check('packed host shared-context snapshot',()=>assert.equal(state.sharedContext.goals.length,5));check('packed host empty initial ledger',()=>assert.equal(state.ledger.stats.drafts,0));
+  const state=await get('/api/state?workspace=demo');check('packed host shared-context snapshot',()=>assert.equal(state.sharedContext.goals.length,5));check('packed host capped daily board',()=>assert.equal(state.board.surfaceIds.length,3));check('packed host empty initial ledger',()=>assert.equal(state.ledger.stats.drafts,0));
   const intent=await fetch(host.origin+'/api/intent?workspace=demo',{method:'POST',headers:{Cookie:cookie,Origin:host.origin,'X-Lifeweave-Csrf':csrf,'Content-Type':'application/json'},body:JSON.stringify({request:'Help me focus on my learning goal for 30 minutes'})});assert.equal(intent.status,200);const value=await intent.json();check('packed host ready bounded focus request',()=>assert.equal(value.status,'ready'));check('packed host exact minute scenario',()=>assert.equal(value.brief.minutes,30));
   for(const asset of ['/apps/web/workspace-tools.mjs','/apps/web/app.mjs']){assert.equal((await fetch(host.origin+asset)).status,200);checks.push(`packed host ${asset}`);}
   check('packed host no external actions',()=>assert.equal(host.status.externalActions,0));

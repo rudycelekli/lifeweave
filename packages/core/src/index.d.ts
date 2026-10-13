@@ -236,3 +236,23 @@ export interface ContextGapResolution { status:'suggested'|'unavailable';gapId:s
 export function compileIntent(state:State,input:{request:string;goalId?:string;minutes?:number;answer?:{questionId:string;value:string|number}},options?:ClockOptions):IntentCompilation;
 export function detectContextGaps(state:State,input?:{goalId?:string},options?:ClockOptions):ContextGap[];
 export function resolveContextGap(state:State,input:{gapId:string;value:string|boolean},options?:ClockOptions):ContextGapResolution;
+
+export interface DailyBoardOptions extends ClockOptions { mode?: EvaluationMode; limit?: 1|2|3 }
+export interface DailyBoard {
+  version:1;tenantId:string;at:string;localDay:string;timezone:string;mode:EvaluationMode;
+  status:'onboarding'|'quiet'|'ready';reason:'no-active-goals'|'quiet-hours'|'attention-budget'|'no-current-moves'|'current-moves';brief:string;
+  primary:SurfaceFrame|null;supporting:SurfaceFrame[];surfaceIds:string[];hiddenCount:number;eligibleCount:number;
+}
+/** Pure current-policy projection. Record delivery only for surfaceIds actually shown. */
+export function composeDailyBoard(state:State,options?:DailyBoardOptions):DailyBoard;
+
+export interface AssistantRequest {request:string;goalId?:string;minutes?:number;answer?:{questionId:string;value:string|number}}
+export interface AssistantFact {id:string;goalId:string;kind:'measurement'|'next-step'|'unknown';label:string;value:number|string|null;unit?:string;target?:number;direction?:'increase'|'decrease';observedAt?:string;evidenceRefs:string[]}
+export interface AssistantTable {columns:string[];rows:{goalId:string;label:string;values:(string|number|null)[];evidenceRefs:string[];observedAt?:string}[]}
+export interface AssistantResponse {
+  version:1;tenantId:string;createdAt:string;kind:'brief'|'answer'|'progress'|'comparison'|'focus';status:'ready'|'needs-clarification'|'unavailable';title:string;text:string[];
+  goalIds:string[];evidenceRefs:string[];facts:AssistantFact[];table?:AssistantTable;surfaces?:SurfaceFrame[];surface?:SurfaceFrame;brief?:IntentBrief;question?:IntentQuestion;input?:AssistantRequest;reason?:string;planner:'deterministic-grammar-v1';
+}
+export function compileAssistantResponse(state:State,input:AssistantRequest,options?:ClockOptions):AssistantResponse;
+/** Optional state validation binds facts and frames to current tenant/consent/freshness. */
+export function validateAssistantResponse(response:unknown,state?:State,options?:ClockOptions):ValidationResult;

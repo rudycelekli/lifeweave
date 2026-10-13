@@ -1,23 +1,23 @@
 {
   "version": 1,
-  "at": "2026-10-13T10:31:08.597Z",
-  "release": "0.1.0-alpha.3",
+  "at": "2026-10-13T14:24:54.177Z",
+  "release": "0.1.0-alpha.4",
   "status": "passed",
   "source": "Codex in-app browser actual UI interactions",
   "fixture": "synthetic-only",
   "checks": [
-    "Compact focus request starts collapsed",
-    "Unsupported2h asks exact minute choice",
-    "30minute preview requires fresh review before applying",
-    "Available calendar metric unchanged by request constraint",
-    "Constrained draft editor retained30minute max/value",
-    "Saved local draft appears in Outcomes",
-    "Useful20minute user report produced1report and0measurements",
-    "Explicit project associated with selectedgoal",
-    "Personal and business outcome pages remainempty",
-    "SharedContext390px no documentoverflow",
-    "Outcomes390px and1440px no documentoverflow",
-    "Latest source reloaded and dashboard screenshot retained"
+    "Default Today shows three moves and one visible request box",
+    "Workspace menu and working canvas start closed",
+    "Progress response displays typed measurements and Unknown cells",
+    "Comparison shows three steps with recorded reasons",
+    "Unsupported two hour focus asks one minute choice",
+    "Thirty minute focus requires explicit fresh review before applying",
+    "Focus constraint preserves available calendar measurement",
+    "Goal editor shows title and dimension first with advanced controls collapsed",
+    "Demo and empty personal workspaces switch without retaining private views",
+    "1440px and390px document widths match viewport",
+    "Wide comparison scrolls inside table container on390px viewport",
+    "Latest daily board screenshot contains synthetic data only"
   ],
   "viewports": [
     {
@@ -31,7 +31,7 @@
   ],
   "screenshot": {
     "file": "docs/assets/workspace.jpg",
-    "sha256": "b4489afbd8dc45a358f3f3a4526553cba56b2b19572864fe571184088e0daa6f",
+    "sha256": "251cbba329fdd83c10e3638a67b58d72a703a54a00ed667eca787078300f47c6",
     "publicSyntheticOnly": true
   },
   "liveAccountActions": 0,
@@ -41,11 +41,11 @@
   "sourceHashes": [
     {
       "file": "apps/web/app.mjs",
-      "sha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
+      "sha256": "f712f7d0413933b57759c262c5e60959fa1f5f92f230d6fc453e9cef3eca7d53"
     },
     {
       "file": "apps/web/workspace-tools.mjs",
-      "sha256": "2887645211fc0d0a48ae124f07c1626c5ddf1d0e1f5b848c0862f571ab808afd"
+      "sha256": "1a825dba0b7ccb5f38bbb49d11f3a3074c17ee0c1c1cb0a88dbf3c90a69de619"
     },
     {
       "file": "apps/web/request-panel.mjs",
@@ -53,7 +53,7 @@
     },
     {
       "file": "apps/web/server.mjs",
-      "sha256": "bbbcc9c07f341a39be43ea4448798147e6af908e1610ef5f1826d5a87add0748"
+      "sha256": "ef208a254b688b3fe25ca544e354620b6c4983fc30116ca0018c02e4a4deb455"
     }
   ]
 }

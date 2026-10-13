@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "at": "2026-10-13T10:42:38.738Z",
+  "at": "2026-10-13T14:24:19.692Z",
   "status": "passed",
   "runtime": {
     "node": "v24.19.0",
@@ -21,11 +21,11 @@
       "exitCode": 0
     }
   },
-  "tests": 146,
+  "tests": 192,
   "sourceHashes": [
     {
       "file": "packages/connectors/package.json",
-      "sha256": "165ac5fce2e0fe99dbcafeb24c6aa82a283d12d98a212c1f7aa96ac25845d5f4"
+      "sha256": "0cf2c3ae3d18a3c32416780fdc36161d5c441afd57c483c698b5befb9dd3a67d"
     },
     {
       "file": "packages/connectors/src/index.d.ts",
@@ -37,7 +37,7 @@
     },
     {
       "file": "packages/core/package.json",
-      "sha256": "d762e96a3b5036f1dce6394cf023cbdda77dbf872bc0fb34c5c6757d44ab7081"
+      "sha256": "3ad4a51df3b9cb1d259ee29399a9665b06e20550689ba7a0f16e6cd420db9963"
     },
     {
       "file": "packages/core/scripts/verify.mjs",
@@ -56,6 +56,18 @@
       "sha256": "7c7824c31ca6cc2cc714bf7c2119d15acfb6e01066e36fecc9256ec2bb229a02"
     },
     {
+      "file": "packages/core/src/daily-board/application/compose.mjs",
+      "sha256": "314f51da1fa92bde21daae0c72af8dc7e697a0ce0d074ff53c3b18aa73bce97c"
+    },
+    {
+      "file": "packages/core/src/daily-board/domain/selection.mjs",
+      "sha256": "81fdd7fc37c21194a32ac3644cd8a5d672b1794cdfff045689c301f72a46cae8"
+    },
+    {
+      "file": "packages/core/src/daily-board/index.mjs",
+      "sha256": "dbcc83b04e348eda198b78e0cf3926dbfac4f07bf697adb45a911b3940b2da65"
+    },
+    {
       "file": "packages/core/src/demo.mjs",
       "sha256": "4c0b3a4c47428e3f9056eb46dc4cfe8457bf45804a8be4e7f3a7bf71fe44d820"
     },
@@ -69,11 +81,11 @@
     },
     {
       "file": "packages/core/src/index.d.ts",
-      "sha256": "21e804f70f121ea3e3ae6aa26b62ce74c7fcdbc6587e0099e362ba389a7afa4b"
+      "sha256": "f1a2bbd978376c2e97fa5066f0809671082fedb35532ddc199594c36e5497d2d"
     },
     {
       "file": "packages/core/src/index.mjs",
-      "sha256": "38781bd3e102dada34cd4b2a1927281fca75a8c9e6ff17d4008098a55eb47873"
+      "sha256": "e5e308c3a42f7cde813a79dd0718c54be0d4e6ffe5a881b292e4b38d6a7f2d72"
     },
     {
       "file": "packages/core/src/intent-planning/index.mjs",
@@ -116,6 +128,10 @@
       "sha256": "97f3e36751ba4c3de9e9169743c07be66bc71ed757dc4282028ad40868a27a84"
     },
     {
+      "file": "packages/core/src/response-routing/index.mjs",
+      "sha256": "13853219c427873e4844b1b7356f946f1d5c4b88a2b3bdb798017c907a9cc324"
+    },
+    {
       "file": "packages/core/src/shared/time.mjs",
       "sha256": "74ec79af2cafe976ffa7dec9ce9c605cf64cc6048fa847c81eff01bbceb2426b"
     },
@@ -145,7 +161,7 @@
     },
     {
       "file": "packages/planner/package.json",
-      "sha256": "3bd82424e0be55dbdc3058793eb1fa85581412a800d67f7b9812d12342f895ae"
+      "sha256": "5cb3c8f47232504c37081292fb162f5dbc6dc629bd4e0ef5933f44488d23320b"
     },
     {
       "file": "packages/planner/scripts/verify.mjs",
@@ -161,7 +177,7 @@
     },
     {
       "file": "packages/ui/package.json",
-      "sha256": "867b546736a377601c685b00b88d6acb6dee26089b2c42fa5453970f0a44e201"
+      "sha256": "c01871314db92a13ce1ab919adf76444a33d7a0852339930a40c10554d106162"
     },
     {
       "file": "packages/ui/src/index.d.ts",
@@ -185,15 +201,15 @@
     },
     {
       "file": "apps/desktop/Lifeweave.swift",
-      "sha256": "40fa4498a6221f8599f945dcaf16ea7ae1b9f5a353ed3a513b85c6af6639e53b"
+      "sha256": "5ec5c2921a9876d22d1c6a852288ea02b640b1a07080ba3d3c9507d191bde412"
     },
     {
       "file": "apps/web/app.css",
-      "sha256": "ad2a9cb7d0a1644133425aae4695e3ffe25599273d3c0e0091325fabfee35fa5"
+      "sha256": "c423915b48113fbef23460e46fe7ec9026dbec799f432c320671d93982438472"
     },
     {
       "file": "apps/web/app.mjs",
-      "sha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
+      "sha256": "f712f7d0413933b57759c262c5e60959fa1f5f92f230d6fc453e9cef3eca7d53"
     },
     {
       "file": "apps/web/host-model.mjs",
@@ -213,15 +229,19 @@
     },
     {
       "file": "apps/web/server.mjs",
-      "sha256": "bbbcc9c07f341a39be43ea4448798147e6af908e1610ef5f1826d5a87add0748"
+      "sha256": "ef208a254b688b3fe25ca544e354620b6c4983fc30116ca0018c02e4a4deb455"
     },
     {
       "file": "apps/web/workspace-tools.mjs",
-      "sha256": "2887645211fc0d0a48ae124f07c1626c5ddf1d0e1f5b848c0862f571ab808afd"
+      "sha256": "1a825dba0b7ccb5f38bbb49d11f3a3074c17ee0c1c1cb0a88dbf3c90a69de619"
     },
     {
       "file": "tests/app-lifecycle.test.mjs",
-      "sha256": "3a141cb8de3b25b694e9b88f91c4e7505b7f3fdff90304d00ddb0024c01a9ae6"
+      "sha256": "7524a391fc11b827fea261a0d717c64cbf6aeba5fdec7925ac194749ba9d959f"
+    },
+    {
+      "file": "tests/assistant-ui.test.mjs",
+      "sha256": "7127330ac8e44b7bba4f5c52c104f217a8f3d71b1ec595448b66d3a85f82f261"
     },
     {
       "file": "tests/connectors.test.mjs",
@@ -238,6 +258,14 @@
     {
       "file": "tests/core.test.mjs",
       "sha256": "c8fdb75f8d9701bcc944f911ee02e5ac502098040df19a98d33b6d679b511368"
+    },
+    {
+      "file": "tests/daily-board-lifecycle.test.mjs",
+      "sha256": "9916818b83beb89328189a7eefcf126cd50c7ebff960ab582f434440b9e1d558"
+    },
+    {
+      "file": "tests/daily-board.test.mjs",
+      "sha256": "f72ec54a8e2d185f9e1334ce8ff76a5db44b09407f125d15edf7c2f67c20f833"
     },
     {
       "file": "tests/host-model.test.mjs",
@@ -260,6 +288,14 @@
       "sha256": "6752ce069a13edf216ce7e82d8f2595e6ff06fba9c8e25ddacb3cb560796db0a"
     },
     {
+      "file": "tests/response-routing.test.mjs",
+      "sha256": "a06908dde3d4644adf7ce8f5494e721d35ec7a5805e7b5a1becee815e4a9b5af"
+    },
+    {
+      "file": "tests/server-board-responses.test.mjs",
+      "sha256": "15acf602f0de9c73d6a32434dd4ec30cb2a2f29785cf5fe16de55c4f76b09598"
+    },
+    {
       "file": "tests/server-context.test.mjs",
       "sha256": "9d103e9090c203c6804fa3a57a20a0c3eb66e8e0db72d5f821379c3647dfe76f"
     },
@@ -273,7 +309,7 @@
     },
     {
       "file": "tests/types.test.ts",
-      "sha256": "e911893feecb7a9f8544dda052e1cba70d68106ffec7f3eda64ff8c4040976ba"
+      "sha256": "f160bd16069c8af57e4b66fe15a4fe1eedcd246479e791a919fc2e35c58b0b2b"
     },
     {
       "file": "tests/ui.test.mjs",
@@ -293,7 +329,7 @@
     },
     {
       "file": "scripts/package.mjs",
-      "sha256": "719862a2f55b207417221fd273163fb62df07f418535ed138ebe50a1d8acc7f7"
+      "sha256": "edca76833fe99e678e3d8688aca481ed5abb93c06d280bfbad8e663f0f7d82bf"
     },
     {
       "file": "scripts/replay.mjs",
@@ -309,7 +345,7 @@
     },
     {
       "file": "scripts/verify-packed.mjs",
-      "sha256": "08fe9d16980e1415a07cb903bf13e7d2878b6f32d3c244c6400bbb0e7e9189f4"
+      "sha256": "95c5b5b0dce2f4c8c3fa19dd3c53e2a21e2c3b27a03a6390ba00ad94fcfc686c"
     },
     {
       "file": "scripts/verify.mjs",

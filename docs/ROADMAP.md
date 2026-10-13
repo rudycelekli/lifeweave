@@ -2,7 +2,7 @@
 
 ## Implemented local alpha
 
-Portable goal/evidence engine; five proactive rule families; six declarative block types; bounded working scenarios; DOM/Web Component/React renderer; local personal and business states; explicit imports and measurements; shared goal/person/project context; single-question missing-fact confirmation; deterministic requested focus views; evidence-linked outcome ledger; saved local drafts; feedback/quiet-hours/attention receipts; optional explicit model request/preview/review; read-only provider contracts; seven pinned source reviews; macOS local shell source. Evidence is in docs/evidence and package tests.
+Portable goal/evidence engine; five proactive rule families; six declarative block types; bounded working scenarios; DOM/Web Component/React renderer; local personal and business states; explicit imports and measurements; bounded daily board; concise brief/progress/comparison/focus requests; shared goal/person/project context; single-question missing-fact confirmation; deterministic requested focus views; evidence-linked outcome ledger; saved local drafts; feedback/quiet-hours/attention receipts; optional explicit model request/preview/review; read-only provider contracts; seven pinned source reviews; macOS local shell source. Evidence is in docs/evidence and package tests.
 
 ## Next acceptance gate
 

@@ -4089,5 +4089,11 @@
       }
     }
   ],
-  "errors": []
+  "errors": [],
+  "snapshotRetention": {
+    "originalCheckoutPaths": "historical locations at inspection",
+    "currentClonesRetained": false,
+    "reason": "Disposable clean public clones removed for disk reserve after checking no unique commits",
+    "retainedEvidence": "Pinned revisions, file digests, captured manifest content and inspected source entry points"
+  }
 }

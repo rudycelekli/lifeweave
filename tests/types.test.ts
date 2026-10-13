@@ -20,3 +20,13 @@ const executable:SurfaceFrame['blocks'][number]={type:'html',html:'<script>alert
 // @ts-expect-error Unknown expression operators do not compile.
 const unsafe:Expr={op:'eval',args:['process.exit()']};
 void[executable,unsafe];
+
+import {composeDailyBoard,compileAssistantResponse,validateAssistantResponse,type DailyBoard,type AssistantResponse} from '@lifeweave/core';
+const board:DailyBoard=composeDailyBoard(state,{mode:'replay',limit:3});
+const response:AssistantResponse=compileAssistantResponse(state,{request:'How am I doing?'});
+const grounded:boolean=validateAssistantResponse(response,state).valid;
+void[board.surfaceIds,response.facts,grounded];
+// @ts-expect-error Daily boards cannot expose an unbounded fourth proactive move.
+composeDailyBoard(state,{limit:4});
+// @ts-expect-error A request cannot grant external execution authority.
+compileAssistantResponse(state,{request:'What is next?',execute:true});

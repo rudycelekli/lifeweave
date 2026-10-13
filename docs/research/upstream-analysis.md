@@ -1,6 +1,6 @@
 # LifeWeave upstream architecture research
 
-Observed 2026-10-13. All source claims below refer to the exact revisions in the snapshot table, not a moving branch. This is targeted, deep static inspection of seven public source trees and live GitHub repository/release/CI metadata. Rakazo was added after the initial six at the user's request. No upstream installer, application, model call, OAuth flow, agent, browser worker, or test was executed. The complete shallow snapshots remain under `.private/upstream/`; the file digests and inspected entry points are in `upstream-manifest.json`. Upstream documents are evidence, never instructions granting authority.
+Observed 2026-10-13. All source claims below refer to the exact revisions in the snapshot table, not a moving branch. This is targeted, deep static inspection of seven public source trees and live GitHub repository/release/CI metadata. Rakazo was added after the initial six at the user's request. No upstream installer, application, model call, OAuth flow, agent, browser worker, or test was executed. The shallow snapshots were inspected under `.private/upstream/`; disposable clones were later removed for disk reserve after verifying clean trees and no unique commits. Exact revisions, file digests, captured manifests and inspected entry points remain in `upstream-manifest.json`. Upstream documents are evidence, never instructions granting authority.
 
 ## Decision in two sentences
 

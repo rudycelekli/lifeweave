@@ -30,7 +30,7 @@ importers:
   packages/connectors:
     dependencies:
       '@lifeweave/core':
-        specifier: 0.1.0-alpha.3
+        specifier: 0.1.0-alpha.4
         version: link:../core
 
   packages/core: {}
@@ -38,13 +38,13 @@ importers:
   packages/planner:
     dependencies:
       '@lifeweave/core':
-        specifier: 0.1.0-alpha.3
+        specifier: 0.1.0-alpha.4
         version: link:../core
 
   packages/ui:
     dependencies:
       '@lifeweave/core':
-        specifier: 0.1.0-alpha.3
+        specifier: 0.1.0-alpha.4
         version: link:../core
       react:
         specifier: '>=18'

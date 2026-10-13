@@ -8,3 +8,5 @@ export { buildSharedContext, upsertContextEntity, capturePlanBaseline } from './
 export { recordPlanOutcome, buildOutcomeLedger, pruneContextData } from './outcome-ledger/application/ledger.mjs';
 export { effectiveObservation, recordContextCorrection } from './shared-context/application/corrections.mjs';
 export { compileIntent, detectContextGaps, resolveContextGap } from './intent-planning/index.mjs';
+export { composeDailyBoard } from './daily-board/index.mjs';
+export { compileAssistantResponse, validateAssistantResponse } from './response-routing/index.mjs';

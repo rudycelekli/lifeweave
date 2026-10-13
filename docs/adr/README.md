@@ -13,4 +13,6 @@
 | [ADR-008](ADR-008-evidence-linked-outcome-ledger.md) | Evidence-linked draft/report/measurement ledger | Implemented local alpha; causal attribution unknown |
 | [ADR-009](ADR-009-inspectable-intent-and-minimal-clarification.md) | Inspectable bounded focus intents and minimal clarification | Implemented deterministic local alpha |
 
+| [ADR-010](ADR-010-minimal-daily-board-and-adaptive-responses.md) | Minimal daily board and bounded adaptive responses | Implemented local alpha; usefulness evaluation pending |
+
 ADRs are recorded locally. Ruflo CLI provides a verified local project memory fallback because the named hierarchical graph MCP tools are unavailable in this session. A textual memory receipt is not a verified AgentDB causal-graph registration, model training, or user acceptance of the research report. Research findings are not stored remotely.

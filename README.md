@@ -2,15 +2,19 @@
 
 A local, proactive intelligent UI toolkit for the goals you choose.
 
-![Synthetic LifeWeave dashboard with a working focus scenario](docs/assets/workspace.jpg)
+![Synthetic LifeWeave daily board](docs/assets/workspace.jpg)
 
 LifeWeave connects goals to consented evidence and turns useful moments into working interfaces: a focus planner, an overdue-commitment review, a sleep reflection, a relationship reminder, or a measured-result check-in. It opens to a dashboard, with the evidence and controls needed for a next move. No prompt is required for the rule-driven baseline.
 
-**Status: 0.1.0-alpha.3.** The local engine, console, portable packages, optional requested model views and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, general model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
+**Status: 0.1.0-alpha.4.** The local engine, console, portable packages, optional requested model views and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, general model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
+
+## A small daily board
+
+Today shows at most three evidence-backed moves, with working tools opened only when useful. One request box chooses a concise brief, a progress table, a next-step comparison or a bounded focus scenario. Existing workspace tools remain available in a compact menu. Quiet hours and attention budgets still apply; hidden candidates do not spend attention. Read the [daily-board and response contract](docs/DAILY-BOARD.md).
 
 ## Shared context and outcomes
 
-**Shared Context** connects active goals, eligible sources and explicit people/projects. Missing facts get a single reviewable question; user confirmations remain separate from original evidence. **What would help right now?** builds a bounded focus view from a confirmed window without a model call. **Outcomes** separates drafts, user reports and later measurements, with comparable deltas and causal attribution unknown. Source revocation removes dependent records. See the [behavior and evaluation contract](docs/CONTEXT-AND-OUTCOMES.md).
+**Shared Context** connects active goals, eligible sources and explicit people/projects. Missing facts get a single reviewable question; user confirmations remain separate from original evidence. **Ask LifeWeave** builds a bounded focus view from a confirmed window without a model call. **Outcomes** separates drafts, user reports and later measurements, with comparable deltas and causal attribution unknown. Source revocation removes dependent records. See the [behavior and evaluation contract](docs/CONTEXT-AND-OUTCOMES.md).
 
 ## Run locally
 

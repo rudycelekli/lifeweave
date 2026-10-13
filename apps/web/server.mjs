@@ -5,7 +5,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validateState, createDemoState, evaluate, ingestObservations, applyFeedback, recordSurfaceDelivery,
   buildSharedContext, upsertContextEntity, capturePlanBaseline, recordPlanOutcome, buildOutcomeLedger, pruneContextData,
-  compileIntent, detectContextGaps, resolveContextGap, recordContextCorrection } from '../../packages/core/src/index.mjs';
+  compileIntent, detectContextGaps, resolveContextGap, recordContextCorrection, composeDailyBoard, compileAssistantResponse, validateAssistantResponse } from '../../packages/core/src/index.mjs';
 import { integrationCatalog } from '../../packages/connectors/src/index.mjs';
 import { createModelPlanner, ModelPlannerError, revalidateModelProposal } from '../../packages/planner/src/index.mjs';
 import { readHostModelConfig } from './host-model.mjs';
@@ -26,11 +26,13 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
     ||typeof planner.configuration.model!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,199}$/.test(planner.configuration.model)))throw new ModelPlannerError('invalid-console-model-config');
   await fs.mkdir(dataDir,{recursive:true,mode:0o700});
   const startedAt=clock(), sessions=new Map(), states={},activity=[];
+  const canonicalPersonalHistory=path.resolve(dataDir)===path.join(ROOT,'.private/runtime');
   const status={startedAt,lastTick:startedAt,ticks:0,evaluations:0,workerRunning:true,intervalMs,externalActions:0,auditError:null};
   let origin, sessionCookieName, timer, writeQueue=Promise.resolve();
   let modelAttempts=0;
   const modelProposals={demo:new Map(),personal:new Map(),business:new Map()};
   const intentPreviews={demo:new Map(),personal:new Map(),business:new Map()};
+  const responsePreviews={demo:new Map(),personal:new Map(),business:new Map()};
   const contextSignature=state=>crypto.createHash('sha256').update(JSON.stringify([state.tenantId,state.goals,state.observations,state.connections,state.contextEntities,state.contextCorrections])).digest('hex');
   const boundedBody=(body,keys)=>{if(!body||Array.isArray(body)||typeof body!=='object'||Object.keys(body).some(key=>!keys.includes(key)))throw new Error('Only declared local fields are accepted');};
   function emptyState(mode='personal') {
@@ -60,7 +62,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
   }
   try {const raw=await fs.readFile(path.join(dataDir,'activity.jsonl'),'utf8');activity.push(...raw.trim().split('\n').filter(Boolean).slice(-100).map(x=>JSON.parse(x)).reverse());}catch(error){if(error.code!=='ENOENT')throw error;}
   const queue=mode=>{status.evaluations++;return evaluate(states[mode],{now:clock(),mode:mode==='demo'?'replay':'live'});};
-  const workspaceSnapshot=mode=>{const now=clock();return {workspace:mode,state:states[mode],queue:queue(mode),status,sharedContext:buildSharedContext(states[mode],{now}),gaps:detectContextGaps(states[mode],{},{now}),ledger:buildOutcomeLedger(states[mode],{now})};};
+  const workspaceSnapshot=mode=>{const now=clock();return {workspace:mode,state:states[mode],queue:queue(mode),board:composeDailyBoard(states[mode],{now,mode:mode==='demo'?'replay':'live'}),status,sharedContext:buildSharedContext(states[mode],{now}),gaps:detectContextGaps(states[mode],{},{now}),ledger:buildOutcomeLedger(states[mode],{now})};};
   function reviewIntent(mode,previewId){
     const entry=intentPreviews[mode].get(previewId);
     if(!entry||entry.signature!==contextSignature(states[mode])||Date.parse(entry.result.surface.expiresAt)<=Date.parse(clock()))throw new Error('Requested view expired or its context changed. Request a fresh view.');
@@ -165,6 +167,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
     if(req.method==='GET') {
       if(url.pathname==='/api/model')return send(res,200,modelStatus());
       if(url.pathname==='/api/state')return send(res,200,workspaceSnapshot(mode));
+      if(url.pathname==='/api/board')return send(res,200,composeDailyBoard(states[mode],{now:clock(),mode:mode==='demo'?'replay':'live'}));
       if(url.pathname==='/api/context')return send(res,200,buildSharedContext(states[mode],{now:clock()}));
       if(url.pathname==='/api/context-gaps')return send(res,200,{gaps:detectContextGaps(states[mode],{},{now:clock()})});
       if(url.pathname==='/api/outcomes')return send(res,200,buildOutcomeLedger(states[mode],{now:clock()}));
@@ -172,7 +175,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
       if(url.pathname==='/api/activity')return send(res,200,{activity:activity.filter(x=>x.mode===mode),status});
       if(url.pathname==='/api/plans')return send(res,200,{plans:states[mode].plans||[]});
       if(url.pathname==='/api/research')return send(res,200,await jsonFile('docs/research/comparison.json',{repositories:[],gaps:['Source review is in progress.']}));
-      if(url.pathname==='/api/candidates')return send(res,200,{candidates:mode==='personal'?await jsonFile('.private/inputs/candidate-goals.json',[]):[]});
+      if(url.pathname==='/api/candidates')return send(res,200,{candidates:mode==='personal'&&canonicalPersonalHistory?await jsonFile('.private/inputs/candidate-goals.json',[]):[]});
       if(url.pathname==='/api/export') {res.setHeader('Content-Disposition','attachment; filename="lifeweave-workspace.json"');return send(res,200,states[mode]);}
       return send(res,404,{error:'Unknown endpoint'});
     }
@@ -180,6 +183,28 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
     if(req.headers.origin!==origin||req.headers['x-lifeweave-csrf']!==found.csrf)return send(res,403,{error:'Local origin and CSRF token required',...(modelPaths.has(url.pathname)?{code:'local-origin-and-csrf-required'}:{})});
     if(url.pathname==='/api/model-proposals'||url.pathname==='/api/model-proposals/review')return modelRequest(req,res,url,mode);
     const body=await readBody(req);
+    if(url.pathname==='/api/responses'){
+      boundedBody(body,['request','goalId','minutes','answer']);
+      const response=compileAssistantResponse(states[mode],body,{now:clock()});
+      let responseId,previewId;
+      if(response.status==='ready'){
+        responseId=`response-${crypto.randomUUID()}`;
+        if(response.kind==='focus'){
+          previewId=`intent-${crypto.randomUUID()}`;while(intentPreviews[mode].size>=20)intentPreviews[mode].delete(intentPreviews[mode].keys().next().value);
+          intentPreviews[mode].set(previewId,{input:clone(body),result:{status:response.status,brief:clone(response.brief),surface:clone(response.surface)},signature:contextSignature(states[mode])});
+        }
+        while(responsePreviews[mode].size>=20)responsePreviews[mode].delete(responsePreviews[mode].keys().next().value);
+        responsePreviews[mode].set(responseId,{response:clone(response),signature:contextSignature(states[mode]),previewId,expiresAt:Date.parse(response.createdAt)+300000});
+      }
+      return send(res,200,{workspace:mode,response,...(responseId?{responseId}:{}),...(previewId?{previewId}:{})});
+    }
+    if(url.pathname==='/api/responses/review'){
+      boundedBody(body,['responseId']);if(typeof body.responseId!=='string'||body.responseId.length>100)throw new Error('Current response identifier required');
+      const entry=responsePreviews[mode].get(body.responseId);
+      if(!entry||entry.signature!==contextSignature(states[mode])||entry.expiresAt<=Date.parse(clock())||!validateAssistantResponse(entry.response,states[mode],{now:clock()}).valid)throw new Error('This response changed or expired. Ask again with current evidence.');
+      if(entry.previewId)reviewIntent(mode,entry.previewId);
+      return send(res,200,{workspace:mode,responseId:body.responseId,response:entry.response,...(entry.previewId?{previewId:entry.previewId}:{})});
+    }
     if(url.pathname==='/api/intent'){
       boundedBody(body,['request','goalId','minutes','answer']);
       const result=compileIntent(states[mode],body,{now:clock()});
@@ -195,7 +220,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
       if(url.pathname==='/api/feedback') {
         state=applyFeedback(state,body,{now:clock()});await persist(mode,state);log('feedback',`${body.kind} suggestion ${body.surfaceId}`,mode);
       } else if(url.pathname==='/api/deliveries') {
-        state=recordSurfaceDelivery(state,body.surfaceIds,{now:clock()});await persist(mode,state);
+        boundedBody(body,['surfaceIds']);const displayed=composeDailyBoard(state,{now:clock(),mode:mode==='demo'?'replay':'live'}).surfaceIds;if(!Array.isArray(body.surfaceIds)||body.surfaceIds.length>3||body.surfaceIds.some(id=>!displayed.includes(id)))throw new Error('Only current displayed daily-board moves can be acknowledged');state=recordSurfaceDelivery(state,body.surfaceIds,{now:clock()});await persist(mode,state);
       } else if(url.pathname==='/api/goals') {
         if(typeof body.title!=='string'||!body.title.trim())throw new Error('Goal title required');
         const goal={id:body.id||`goal-${crypto.randomUUID()}`,title:body.title.trim(),dimension:body.dimension||'personal',status:body.status||'active',priority:body.priority??60};
@@ -262,6 +287,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
       } else {return send(res,404,{error:'Unknown endpoint'});}
       invalidateProposals(mode);
       for(const [id,entry] of intentPreviews[mode])if(entry.signature!==contextSignature(states[mode]))intentPreviews[mode].delete(id);
+      for(const [id,entry] of responsePreviews[mode])if(entry.signature!==contextSignature(states[mode]))responsePreviews[mode].delete(id);
       return send(res,200,{ok:true,...workspaceSnapshot(mode)});
     });
     writeQueue=operation.catch(()=>{});

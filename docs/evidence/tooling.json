@@ -89,11 +89,39 @@
       "owner": "native personal_model",
       "status": "native-review-complete",
       "rufloStatus": "pending-unassigned"
+    },
+    {
+      "id": "task-1791900077376-atzt5r",
+      "owner": "native core_builder",
+      "status": "native-execution-complete",
+      "rufloStatus": "pending-unassigned",
+      "milestone": "alpha4"
+    },
+    {
+      "id": "task-1791900077735-7xqbl6",
+      "owner": "native repository_research",
+      "status": "native-execution-complete",
+      "rufloStatus": "pending-unassigned",
+      "milestone": "alpha4"
+    },
+    {
+      "id": "task-1791900078057-8rqu9w",
+      "owner": "native personal_model",
+      "status": "native-review-complete",
+      "rufloStatus": "pending-unassigned",
+      "milestone": "alpha4"
     }
   ],
   "releaseProtocol": {
     "scope": "LifeWeave alpha source/package release",
     "brainPluginSealApplied": false,
     "reason": "Brain/RVF/plugin-host registry release contract does not describe this independent application. Exact revision CI, immutable archive digest checks, clean temporary SDK/host checks and post-publication byte comparison are used."
+  },
+  "localCache": {
+    "status": "removed-disposable-task-caches",
+    "versionsPreviouslyVerified": true,
+    "installedCliCacheCurrentlyRetained": false,
+    "publicResearchClonesRemovedAfterCleanAndNoUniqueCommitChecks": true,
+    "canonicalResearchReportsRetained": true
   }
 }
