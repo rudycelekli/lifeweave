@@ -56,13 +56,13 @@ const compareVersion = (a, b) => {
 const minimumMacOS = compareVersion(runtimeMinimum, '13.0') > 0 ? runtimeMinimum : '13.0';
 
 // Exact allowlist: code/UI trees and one public research artifact. Never copy the repository root.
-const PUBLIC_WEB_FILES = ['apps/web/server.mjs', 'apps/web/index.html', 'apps/web/app.mjs',
+const PUBLIC_WEB_FILES = ['apps/web/server.mjs', 'apps/web/host-model.mjs', 'apps/web/request-panel.mjs', 'apps/web/index.html', 'apps/web/app.mjs',
   'apps/web/app.css', 'apps/web/icon.svg', 'apps/web/manifest.json', 'apps/web/sw.js'];
-const PUBLIC_PACKAGES = ['packages/core', 'packages/ui', 'packages/connectors'];
+const PUBLIC_PACKAGES = ['packages/core', 'packages/ui', 'packages/connectors', 'packages/planner'];
 const PUBLIC_TREES = PUBLIC_PACKAGES.map(name => `${name}/src`);
 const PACKAGE_ROOT_FILES = ['package.json', 'README.md', 'LICENSE'];
 const REQUIRED = [...PUBLIC_WEB_FILES, 'packages/core/src/index.mjs',
-  'packages/ui/src/index.mjs', 'packages/connectors/src/index.mjs', 'docs/research/comparison.json'];
+  'packages/ui/src/index.mjs', 'packages/connectors/src/index.mjs', 'packages/planner/src/index.mjs', 'docs/research/comparison.json'];
 const EXTENSIONS = new Set(['.mjs', '.js', '.css', '.svg', '.ts', '.png', '.woff2']);
 const EXCLUDED = new Set(['node_modules', 'dist', 'build', 'coverage', '__tests__', 'test', 'tests', 'fixtures']);
 const SECRET_NAME = /(secret|credential|candidate-goals|personal-model|\.pem$|\.key$)/i;
@@ -122,12 +122,14 @@ try {
     }
   }
   await copyPublicFile('docs/research/comparison.json');
-  // The sole generated symlink resolves only to an already copied public package.
+  // Generated links resolve only to already copied public packages.
   const moduleDirectory = path.join(site, 'node_modules/@lifeweave');
   await fs.mkdir(moduleDirectory, { recursive: true });
-  await fs.symlink('../../packages/core', path.join(moduleDirectory, 'core'));
-  const packageTarget = await fs.realpath(path.join(moduleDirectory, 'core'));
-  if (packageTarget !== path.join(site, 'packages/core')) throw new Error('Generated core link escaped its public package.');
+  for(const name of ['core','planner']){
+    await fs.symlink(`../../packages/${name}`, path.join(moduleDirectory, name));
+    const packageTarget = await fs.realpath(path.join(moduleDirectory, name));
+    if (packageTarget !== path.join(site, 'packages',name)) throw new Error(`Generated ${name} link escaped its public package.`);
+  }
   for (const license of ['LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md']) {
     if (await fs.stat(path.join(ROOT, license)).then(stat => stat.isFile()).catch(() => false)) await copyPublicFile(license);
   }
@@ -171,7 +173,7 @@ try {
     whitelist: [...PUBLIC_WEB_FILES, ...PUBLIC_TREES,
       ...PUBLIC_PACKAGES.flatMap(name => PACKAGE_ROOT_FILES.map(filename => `${name}/${filename}`)),
       'docs/research/comparison.json'], excludedPrivateData: true,
-    generatedLinks: [{ path: 'site/node_modules/@lifeweave/core', target: '../../packages/core' }],
+    generatedLinks: ['core','planner'].map(name=>({path:`site/node_modules/@lifeweave/${name}`,target:`../../packages/${name}`})),
     bridge: false, externalNavigation: false, fileAccess: false, originBoundaryTest: boundary, files };
   // Manifest must be present before the final ad-hoc signature seals bundle resources.
   await fs.writeFile(path.join(resources, 'desktop-build.json'), JSON.stringify(manifest, null, 2));

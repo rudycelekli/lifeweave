@@ -2,11 +2,11 @@
 
 ## Implemented local alpha
 
-Portable goal/evidence engine; five proactive rule families; six declarative block types; bounded working scenarios; DOM/Web Component/React renderer; local personal and business states; explicit imports and measurements; saved local drafts; feedback/quiet-hours/attention receipts; read-only provider contracts; seven pinned source reviews; macOS local shell source. Evidence is in docs/evidence and package tests.
+Portable goal/evidence engine; five proactive rule families; six declarative block types; bounded working scenarios; DOM/Web Component/React renderer; local personal and business states; explicit imports and measurements; saved local drafts; feedback/quiet-hours/attention receipts; optional explicit model request/preview/review; read-only provider contracts; seven pinned source reviews; macOS local shell source. Evidence is in docs/evidence and package tests.
 
 ## Next acceptance gate
 
-Connect one real read-only email/calendar provider with least-privilege OAuth, token renewal, bounded pagination, source freshness, connect/read/revoke canaries and audit receipts. Pair deterministic generation with a user-configured local model/gateway only after a frozen evaluation contract exists. Review inferred commitments before activation. Record useful/irrelevant/harmful outcomes and human oversight; do not treat clicks, model explanations or a high test count as user success.
+Connect one real read-only email/calendar provider with least-privilege OAuth, token renewal, bounded pagination, source freshness, connect/read/revoke canaries and audit receipts. Qualify an explicit local model against frozen layout/fact-preservation and user-usefulness fixtures; the current small installed model's one invalid proposal was rejected. Review inferred commitments before activation. Record useful/irrelevant/harmful outcomes and human oversight; do not treat clicks, model explanations or a high test count as user success.
 
 ## Personal premium connections
 

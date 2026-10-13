@@ -6,7 +6,7 @@ A local, proactive intelligent UI toolkit for the goals you choose.
 
 LifeWeave connects goals to consented evidence and turns useful moments into working interfaces: a focus planner, an overdue-commitment review, a sleep reflection, a relationship reminder, or a measured-result check-in. It opens to a dashboard, with the evidence and controls needed for a next move. No prompt is required for the rule-driven baseline.
 
-**Status: 0.1.0-alpha.1.** The local engine, console, portable packages, optional model presentation adapter and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, live model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
+**Status: 0.1.0-alpha.2.** The local engine, console, portable packages, optional requested model views and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, general model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
 
 ## Run locally
 
@@ -45,7 +45,17 @@ document.querySelector('main').append(renderSurface(surfaces[0]));
 
 Import the UI stylesheet into your host. Use a bundler/package resolver or the console's import map. Packages are included in this source release; an npm registry publication is not claimed. `node scripts/package.mjs` creates clean source and package archives with a manifest, using an explicit allowlist.
 
-For user-requested model layouts, see [the planner adapter](packages/planner/README.md). It defaults to a host-owned loopback OpenAI-compatible endpoint, bounds requests, excludes raw source bodies and rejects changes to measurements, evidence or action authority. Its transports are mock tested; no model is configured in the default console, and generated prose still requires human review.
+The dashboard stays quiet until useful evidence arrives. **Ask for a different view** opens a compact optional request control for the selected suggestion. It previews the result, requires you to review the wording, and checks current evidence again before you choose **Use this view**. Requested views are temporary; fresh state, another workspace or expiration restores the rule-driven original. No model is called by the worker.
+
+To opt into an existing model service on your device:
+
+```sh
+LIFEWEAVE_MODEL=your-installed-model node scripts/start.mjs
+```
+
+The default endpoint is `http://127.0.0.1:11434/v1/chat/completions`. `LIFEWEAVE_MODEL_ENDPOINT` can choose another loopback HTTP chat-completions service; `LIFEWEAVE_MODEL_MAX_REQUESTS` sets a host-session allowance of 0–10, default one; `LIFEWEAVE_MODEL_TIMEOUT_MS` sets 1–60,000 ms, default 10,000. No model is downloaded or silently selected. A loopback endpoint can proxy a cloud service: configure its execution policy to keep inference local. Ollama documents [cloud-disable settings](https://docs.ollama.com/faq#how-do-i-disable-ollama-cloud-features). The console accepts no remote endpoint or key through the browser.
+
+[The planner adapter](packages/planner/README.md) bounds requests, excludes raw source bodies and rejects changes to measurements, evidence or action authority. Proposals always require review because generated wording can still make unsupported claims. The default console has no configured model. Live transport canaries and broad model-quality evaluation are separate from mock acceptance.
 
 ## Desktop and mobile
 

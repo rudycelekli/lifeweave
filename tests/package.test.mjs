@@ -13,7 +13,7 @@ test('clean package tarballs import from an independent consumer with no workspa
   try{
     const manifest=JSON.parse(await fs.readFile(path.join(root,'dist/release-manifest.json'),'utf8'));
     assert.ok(manifest.files.every(f=>!f.path.includes('.private/')&&!f.path.includes('personal-model')&&!f.path.includes('verification.tap')));
-    for(const name of ['core','ui','connectors','planner']){const target=path.join(dir,'node_modules/@lifeweave',name);await fs.mkdir(target,{recursive:true});const tar=spawnSync('tar',['-xzf',path.join(root,`dist/lifeweave-${name}-0.1.0-alpha.1.tgz`),'--strip-components=1','-C',target],{encoding:'utf8'});assert.equal(tar.status,0,tar.stderr);}
+    for(const name of ['core','ui','connectors','planner']){const target=path.join(dir,'node_modules/@lifeweave',name);await fs.mkdir(target,{recursive:true});const tar=spawnSync('tar',['-xzf',path.join(root,`dist/lifeweave-${name}-${manifest.releaseVersion}.tgz`),'--strip-components=1','-C',target],{encoding:'utf8'});assert.equal(tar.status,0,tar.stderr);}
     const core=await import(pathToFileURL(path.join(dir,'node_modules/@lifeweave/core/src/index.mjs')));const state=core.createDemoState(),result=core.evaluate(state,{now:state.fixture.clock,mode:'replay'});assert.equal(result.surfaces.length,4);
     const ui=await import(pathToFileURL(path.join(dir,'node_modules/@lifeweave/ui/src/index.mjs')));assert.equal(ui.parseSurfaceFrame(JSON.stringify(result.surfaces[0])).id,result.surfaces[0].id);
     const connectors=await import(pathToFileURL(path.join(dir,'node_modules/@lifeweave/connectors/src/index.mjs')));const events=[];await connectors.emitAgUiSurface(result.surfaces[0],event=>events.push(event));assert.equal(events.length,1);

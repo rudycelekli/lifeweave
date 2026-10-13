@@ -50,6 +50,35 @@ function assertGrounded(surface, base) {
   }
 }
 
+function parsedClock(value) {
+  if(!(value instanceof Date)&&typeof value!=='string')fail('invalid-grounding-clock');
+  const date = value instanceof Date ? new Date(value) : new Date(value);
+  if (!Number.isFinite(date.getTime())) fail('invalid-grounding-clock');
+  return date.toISOString();
+}
+function groundingIdentity(frame) {
+  const copy = clone(frame); delete copy.createdAt; delete copy.expiresAt;
+  return stable(copy);
+}
+
+/** Fresh host check for reviewed presentation only; original expiration can never be extended. */
+export function revalidateModelProposal(proposal, { state, baseSurface, goalSnapshot, now, interactive = true } = {}) {
+  if (!proposal || proposal.requiresReview !== true || proposal.provenance?.kind !== 'model-proposal'
+    || typeof proposal.provenance?.model !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,199}$/.test(proposal.provenance.model) || !Number.isInteger(proposal.provenance?.requestCount)
+    || proposal.provenance.requestCount < 1 || !validateSurface(proposal.surface).valid || !validateSurface(baseSurface).valid) fail('invalid-model-proposal');
+  const at = parsedClock(now === undefined ? new Date() : now);
+  if (Date.parse(at) < Date.parse(baseSurface.createdAt)) fail('grounding-clock-regressed');
+  if (Date.parse(proposal.surface.expiresAt) <= Date.parse(at) || Date.parse(baseSurface.expiresAt) <= Date.parse(at)) fail('proposal-expired');
+  let current;
+  try { current = evaluate(state, { now: at, mode: interactive ? 'replay' : 'live' }).surfaces.find((frame) => frame.id === baseSurface.id); }
+  catch { fail('grounding-changed'); }
+  if (!current || groundingIdentity(current) !== groundingIdentity(baseSurface)
+    || goalSnapshot && stable(state.goals.find((goal) => goal.id === baseSurface.goalId)) !== stable(goalSnapshot)) fail('grounding-changed');
+  if (Date.parse(proposal.surface.expiresAt) > Date.parse(current.expiresAt)) fail('grounding-expiration-changed');
+  assertGrounded(proposal.surface, baseSurface);
+  return { surface: clone(proposal.surface), provenance: { kind:'model-proposal',model:proposal.provenance.model,requestCount:proposal.provenance.requestCount,validatedAt:at }, requiresReview: true };
+}
+
 async function boundedBody(response) {
   if (response.body?.getReader) {
     const reader = response.body.getReader(), decoder = new TextDecoder();
@@ -72,7 +101,7 @@ async function boundedBody(response) {
 
 /** Optional presentation proposer. Model output never replaces state or grants authority. */
 export function createModelPlanner({ endpoint, model, apiKey, fetchImpl = globalThis.fetch,
-  allowRemote = false, allowDisclosure = false, maxRequests = 1, timeoutMs = 10000 } = {}) {
+  allowRemote = false, allowDisclosure = false, maxRequests = 1, timeoutMs = 10000, clock } = {}) {
   const target = endpointPolicy(endpoint, allowRemote, allowDisclosure);
   if (typeof model !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,199}$/.test(model)) fail('invalid-model');
   if (apiKey !== undefined && (typeof apiKey !== 'string' || apiKey.length < 8 || apiKey.length > 8000 || /[\r\n]/.test(apiKey))) fail('invalid-api-key');
@@ -80,23 +109,29 @@ export function createModelPlanner({ endpoint, model, apiKey, fetchImpl = global
   if (!Number.isInteger(maxRequests) || maxRequests < 0 || maxRequests > 10) fail('invalid-request-budget');
   if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 60000) fail('invalid-timeout');
   if (containsSecret(model, apiKey)) fail('credential-in-model-name');
+  if (clock !== undefined && typeof clock !== 'function') fail('invalid-grounding-clock');
   let requests = 0;
-  async function propose({ state, goalId, request, now, interactive = false } = {}) {
+  async function propose({ state, goalId, surfaceId, request, now, interactive = false, clock: requestClock, getCurrentState } = {}) {
     if (!validateState(state).valid) fail('invalid-state');
     if (typeof request !== 'string' || !request.trim() || request.length > 2000) fail('invalid-user-request');
     if (typeof goalId !== 'string' || !state.goals.some((goal) => goal.id === goalId && goal.status === 'active')) fail('active-goal-required');
     if (typeof interactive !== 'boolean') fail('invalid-interactive-intent');
+    if (surfaceId !== undefined && typeof surfaceId !== 'string') fail('invalid-surface-selection');
+    if (requestClock !== undefined && typeof requestClock !== 'function' || getCurrentState !== undefined && typeof getCurrentState !== 'function') fail('invalid-host-context');
     if (requests >= maxRequests) fail('request-budget-exhausted');
     let evaluation;
     const mode = interactive ? 'replay' : 'live';
-    try { evaluation = evaluate(state, { now, mode }); } catch { fail('invalid-grounding-clock'); }
-    const base = evaluation.surfaces.find((frame) => frame.goalId === goalId);
+    const currentClock = requestClock || clock;
+    const startedWall = Date.now();
+    try { evaluation = evaluate(state, { now: now ?? (currentClock ? currentClock() : undefined), mode }); } catch { fail('invalid-grounding-clock'); }
+    const base = evaluation.surfaces.find((frame) => frame.goalId === goalId && (surfaceId === undefined || frame.id === surfaceId));
     if (!base) fail('no-current-grounded-surface');
-    const clock = evaluation.stats.evaluatedAt;
+    const initialClock = evaluation.stats.evaluatedAt;
     const promptFrame = clone(base);
     // Source summaries/bodies, all connection records, and unrelated observations are withheld.
     for (const block of promptFrame.blocks) if (block.type === 'timeline') block.items.forEach((item, i) => { item.label = `Recorded evidence item ${i + 1}`; });
     const goal = state.goals.find((item) => item.id === goalId);
+    const goalSnapshot = clone(goal);
     const context = { request: request.trim(), goal: { id: goal.id, title: goal.title, dimension: goal.dimension }, baseSurface: promptFrame };
     if (containsSecret(context, apiKey)) fail('credential-in-prompt');
     const body = JSON.stringify({ model, temperature: 0, max_tokens: 3500, response_format: { type: 'json_object' },
@@ -122,15 +157,20 @@ export function createModelPlanner({ endpoint, model, apiKey, fetchImpl = global
       let surface;
       try { surface = JSON.parse(message.content); } catch { fail('invalid-model-format'); }
       assertGrounded(surface, base);
-      // A host revocation or metric change while awaiting the model invalidates the proposal.
-      let current;
-      try { current = evaluate(state, { now: clock, mode }).surfaces.find((frame) => frame.id === base.id); } catch { fail('grounding-changed'); }
-      if (!current || stable(current) !== stable(base)) fail('grounding-changed');
-      return { surface: clone(surface), provenance: { kind: 'model-proposal', model, requestCount: requests }, requiresReview: true };
+      // Resolve latest state object and a genuinely new clock after await. Explicit
+      // historical clocks advance by elapsed wall time unless a host clock is injected.
+      let latestState, freshNow;
+      try {
+        latestState = getCurrentState ? getCurrentState() : state;
+        freshNow = currentClock ? currentClock() : new Date(Date.parse(initialClock) + Math.max(0, Date.now() - startedWall)).toISOString();
+      } catch { fail('invalid-host-context'); }
+      return revalidateModelProposal({ surface: clone(surface), provenance: { kind: 'model-proposal', model, requestCount: requests }, requiresReview: true },
+        { state: latestState, baseSurface: base, goalSnapshot, now: freshNow, interactive });
     })();
     try { return await Promise.race([call, expired]); }
     catch (error) { if (error instanceof ModelPlannerError) throw error; fail('model-transport-failed'); }
     finally { clearTimeout(timeout); controller.abort(); }
   }
-  return Object.freeze({ propose, get requestCount() { return requests; } });
+  const configuration = Object.freeze({ transport: new URL(target).protocol === 'http:' ? 'loopback-http' : 'approved-remote-https', model, maxRequests, timeoutMs });
+  return Object.freeze({ propose, configuration, get requestCount() { return requests; } });
 }

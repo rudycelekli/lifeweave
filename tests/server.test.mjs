@@ -37,6 +37,17 @@ test('mutations require exact local origin and CSRF token',async()=>{
     assert.equal((await f.request('/api/state')).value.state.goals.length,0);
   }finally{await f.cleanup();}
 });
+test('concurrent loopback hosts keep independent cookies in one browser cookie jar',async()=>{
+  const first=await fixture(),second=await fixture();try{
+    const a=await fetch(first.origin+'/api/bootstrap'),b=await fetch(second.origin+'/api/bootstrap');
+    const ac=a.headers.get('set-cookie').split(';')[0],bc=b.headers.get('set-cookie').split(';')[0];
+    assert.notEqual(ac.split('=')[0],bc.split('=')[0]);
+    const jar=`${ac}; ${bc}`;
+    assert.equal((await fetch(first.origin+'/api/state?workspace=personal',{headers:{Cookie:jar}})).status,200);
+    assert.equal((await fetch(second.origin+'/api/state?workspace=personal',{headers:{Cookie:jar}})).status,200);
+    assert.equal((await fetch(first.origin+'/api/state?workspace=personal',{headers:{Cookie:bc}})).status,401);
+  }finally{await first.cleanup();await second.cleanup();}
+});
 test('personal and business workspaces persist separately and reject cross-tenant observations',async()=>{
   const f=await fixture();try{
     await f.request('/api/goals',{body:{id:'g-personal',title:'Learn',dimension:'learning',priority:60,metric:{key:'minutes',target:60,unit:'minutes',direction:'increase'}}});
@@ -54,10 +65,15 @@ test('health scope downgrade purges raw measurements as well as suppressing sugg
   const f=await fixture();try{
     await f.request('/api/goals',{body:{id:'g-health',title:'Routine',dimension:'wellbeing',priority:70,metric:{key:'sleepHours',target:7,unit:'hours',direction:'increase'}}});
     await f.request('/api/local-consent',{body:{health:true}});
-    const result=await f.request('/api/observations',{body:{observations:[{id:'h1',tenantId:'local',connectorId:'local-import',kind:'health.sleep',occurredAt:NOW,goalIds:['g-health'],summary:'Explicit record',metrics:{sleepHours:6},data:{}}]}});assert.equal(result.status,200);
+    const result=await f.request('/api/observations',{body:{observations:[0,1,2].map(i=>({id:`h${i+1}`,tenantId:'local',connectorId:'local-import',kind:'health.sleep',occurredAt:new Date(Date.parse(NOW)-i*86400000).toISOString(),goalIds:['g-health'],summary:'Explicit record',metrics:{sleepHours:6},data:{}}))}});assert.equal(result.status,200);
+    const sleep=result.value.queue.surfaces.find(s=>s.ruleId==='sleep-reflection');assert(sleep);
+    const draft=await f.request('/api/plans',{body:{surfaceId:sleep.id,actionId:sleep.actions[0].id,text:'Private health-derived plan'}});assert.equal(draft.status,200);
     await f.request('/api/local-consent',{body:{health:false}});
     assert.equal((await f.request('/api/state')).value.state.observations.length,0);
     assert.equal(JSON.parse(await fs.readFile(path.join(f.dataDir,'personal.json'),'utf8')).observations.length,0);
+    assert.equal((await f.request('/api/plans')).value.plans.length,0);
+    assert(!JSON.stringify((await f.request('/api/state')).value.state).includes('Private health-derived plan'));
+    assert(!(await fs.readFile(path.join(f.dataDir,'personal.json'),'utf8')).includes('Private health-derived plan'));
   }finally{await f.cleanup();}
 });
 test('concurrent goal writes serialize and invalid inputs cannot corrupt durable state',async()=>{

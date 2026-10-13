@@ -5,18 +5,29 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validateState, createDemoState, evaluate, ingestObservations, applyFeedback, recordSurfaceDelivery } from '../../packages/core/src/index.mjs';
 import { integrationCatalog } from '../../packages/connectors/src/index.mjs';
+import { createModelPlanner, ModelPlannerError, revalidateModelProposal } from '../../packages/planner/src/index.mjs';
+import { readHostModelConfig } from './host-model.mjs';
 
 const ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
 const MIME = {'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.md':'text/plain; charset=utf-8'};
-const WEB_ASSETS=new Set(['apps/web/index.html','apps/web/app.mjs','apps/web/app.css','apps/web/icon.svg','apps/web/manifest.json','apps/web/sw.js']);
+const WEB_ASSETS=new Set(['apps/web/index.html','apps/web/app.mjs','apps/web/request-panel.mjs','apps/web/app.css','apps/web/icon.svg','apps/web/manifest.json','apps/web/sw.js']);
 const publicPath=relative=>WEB_ASSETS.has(relative)||/^packages\/(core|ui)\/src\/[a-zA-Z0-9_./-]+\.(mjs|css)$/.test(relative);
 const clone=value=>structuredClone(value);
 
-export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.private/runtime'),clock=()=>new Date().toISOString(),intervalMs=60000}={}) {
+export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.private/runtime'),clock=()=>new Date().toISOString(),intervalMs=60000,modelConfig,modelPlanner}={}) {
+  if(modelConfig&&modelPlanner)throw new ModelPlannerError('ambiguous-model-config');
+  if(modelConfig&&(modelConfig.allowRemote||modelConfig.allowDisclosure))throw new ModelPlannerError('remote-model-prohibited');
+  const planner=modelPlanner||(modelConfig?createModelPlanner({...modelConfig,allowRemote:false,allowDisclosure:false,clock}):null);
+  if(planner&&(typeof planner.propose!=='function'||planner.configuration?.transport!=='loopback-http'
+    ||!Number.isInteger(planner.configuration.maxRequests)||planner.configuration.maxRequests<0||planner.configuration.maxRequests>10
+    ||!Number.isInteger(planner.configuration.timeoutMs)||planner.configuration.timeoutMs<1||planner.configuration.timeoutMs>60000
+    ||typeof planner.configuration.model!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,199}$/.test(planner.configuration.model)))throw new ModelPlannerError('invalid-console-model-config');
   await fs.mkdir(dataDir,{recursive:true,mode:0o700});
   const startedAt=clock(), sessions=new Map(), states={},activity=[];
   const status={startedAt,lastTick:startedAt,ticks:0,evaluations:0,workerRunning:true,intervalMs,externalActions:0,auditError:null};
-  let origin, timer, writeQueue=Promise.resolve();
+  let origin, sessionCookieName, timer, writeQueue=Promise.resolve();
+  let modelAttempts=0;
+  const modelProposals={demo:new Map(),personal:new Map(),business:new Map()};
   function emptyState(mode='personal') {
     return {version:1,tenantId:mode==='business'?'business-local':'local',goals:[],observations:[],connections:[{id:'local-import',provider:'manual',status:'disconnected',scopes:['manual.read']}],preferences:{timezone:'America/New_York',quietHours:{start:22,end:7},dailySurfaceBudget:4},feedback:[],deliveries:[]};
   }
@@ -53,22 +64,86 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
     try{return JSON.parse(raw);}catch{throw Object.assign(new Error('Invalid JSON'),{status:400});}
   }
   function session(req) {
-    const cookie=String(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith('lifeweave_session='));
-    const id=cookie?.slice('lifeweave_session='.length),found=sessions.get(id);
+    const prefix=`${sessionCookieName}=`;
+    const cookie=String(req.headers.cookie||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(prefix));
+    const id=cookie?.slice(prefix.length),found=sessions.get(id);
     if(found&&Date.now()-found.at<86400000)return found;
     return null;
+  }
+  const modelPaths=new Set(['/api/model','/api/model-proposals','/api/model-proposals/review']);
+  function modelStatus() {
+    return {configured:Boolean(planner),transport:'loopback-http',transportOnly:true,
+      dataDestination:'host-configured-loopback-service',executionLocation:'unverified',requiresReview:true,externalActions:false,
+      ...(planner?{model:planner.configuration.model,requestCount:modelAttempts,remainingRequests:Math.max(0,planner.configuration.maxRequests-modelAttempts)}:{})};
+  }
+  function modelFailure(res,error) {
+    const code=error instanceof ModelPlannerError?error.code:'model-request-failed';
+    const statusCode=code==='model-not-configured'?503:code==='request-budget-exhausted'?429:code==='timeout'?504
+      :code==='proposal-not-found'?404:code==='invalid-model-request'?400:409;
+    return send(res,statusCode,{error:`Model request rejected: ${code}`,code});
+  }
+  function forgetExpired(mode,now) {
+    for(const [id,entry] of modelProposals[mode])if(Date.parse(entry.proposal.surface.expiresAt)<=Date.parse(now))modelProposals[mode].delete(id);
+  }
+  function invalidateProposals(mode) {
+    for(const [id,record] of modelProposals[mode]) {
+      try {revalidateModelProposal(record.proposal,{state:states[mode],baseSurface:record.baseSurface,goalSnapshot:record.goalSnapshot,now:clock(),interactive:true});}
+      catch {modelProposals[mode].delete(id);}
+    }
+  }
+  async function modelRequest(req,res,url,mode) {
+    let body;
+    try {body=await readBody(req);}catch {return modelFailure(res,new ModelPlannerError('invalid-model-request'));}
+    try {
+      if(!body||Array.isArray(body)||typeof body!=='object')throw new ModelPlannerError('invalid-model-request');
+      if(url.pathname==='/api/model-proposals/review') {
+        if(Object.keys(body).some(key=>key!=='proposalId')||typeof body.proposalId!=='string'||body.proposalId.length>100)throw new ModelPlannerError('invalid-model-request');
+        const record=modelProposals[mode].get(body.proposalId);
+        if(!record)throw new ModelPlannerError('proposal-not-found');
+        try {
+          const proposal=revalidateModelProposal(record.proposal,{state:states[mode],baseSurface:record.baseSurface,goalSnapshot:record.goalSnapshot,now:clock(),interactive:true});
+          return send(res,200,{workspace:mode,proposalId:body.proposalId,...proposal});
+        }catch(error){modelProposals[mode].delete(body.proposalId);throw error;}
+      }
+      if(Object.keys(body).some(key=>!['surfaceId','request'].includes(key))||typeof body.surfaceId!=='string'||body.surfaceId.length>160
+        ||typeof body.request!=='string'||!body.request.trim()||body.request.length>2000)throw new ModelPlannerError('invalid-model-request');
+      if(!planner)throw new ModelPlannerError('model-not-configured');
+      if(modelAttempts>=planner.configuration.maxRequests)throw new ModelPlannerError('request-budget-exhausted');
+      const now=clock();
+      const baseSurface=evaluate(states[mode],{now,mode:'replay'}).surfaces.find(frame=>frame.id===body.surfaceId);
+      if(!baseSurface)throw new ModelPlannerError('no-current-grounded-surface');
+      const state=clone(states[mode]),goalSnapshot=clone(state.goals.find(goal=>goal.id===baseSurface.goalId));
+      forgetExpired(mode,now);
+      modelAttempts++;
+      log('model','Explicit user presentation request; review required',mode);
+      let timeout;
+      try {
+        // Do not enter writeQueue: revocation, scope reduction, and goal writes must
+        // finish while transport is pending. Resolve the newest workspace state.
+        const proposal=await Promise.race([
+          planner.propose({state,goalId:baseSurface.goalId,surfaceId:baseSurface.id,request:body.request,now,interactive:true,clock,getCurrentState:()=>states[mode]}),
+          new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new ModelPlannerError('timeout')),planner.configuration.timeoutMs);})
+        ]);
+        const checked=revalidateModelProposal(proposal,{state:states[mode],baseSurface,goalSnapshot,now:clock(),interactive:true});
+        const proposalId=`proposal-${crypto.randomUUID()}`;
+        while(modelProposals[mode].size>=20)modelProposals[mode].delete(modelProposals[mode].keys().next().value);
+        modelProposals[mode].set(proposalId,{proposal:checked,baseSurface,goalSnapshot});
+        return send(res,200,{workspace:mode,proposalId,...checked});
+      }finally{clearTimeout(timeout);}
+    }catch(error){return modelFailure(res,error);}
   }
   async function api(req,res,url) {
     if(url.pathname==='/api/bootstrap'&&req.method==='GET') {
       let found=session(req);
-      if(!found){if(sessions.size>1000)sessions.clear();const id=crypto.randomBytes(32).toString('hex');found={csrf:crypto.randomBytes(32).toString('hex'),at:Date.now()};sessions.set(id,found);res.setHeader('Set-Cookie',`lifeweave_session=${id}; HttpOnly; SameSite=Strict; Path=/`);}
+      if(!found){if(sessions.size>1000)sessions.clear();const id=crypto.randomBytes(32).toString('hex');found={csrf:crypto.randomBytes(32).toString('hex'),at:Date.now()};sessions.set(id,found);res.setHeader('Set-Cookie',`${sessionCookieName}=${id}; HttpOnly; SameSite=Strict; Path=/`);}
       return send(res,200,{csrfToken:found.csrf});
     }
     const found=session(req);
-    if(!found)return send(res,401,{error:'Open the local workspace first.'});
+    if(!found)return send(res,401,{error:'Open the local workspace first.',...(modelPaths.has(url.pathname)?{code:'local-session-required'}:{})});
     const mode=url.searchParams.get('workspace')||'demo';
     if(!['demo','personal','business'].includes(mode))return send(res,400,{error:'Unknown workspace'});
     if(req.method==='GET') {
+      if(url.pathname==='/api/model')return send(res,200,modelStatus());
       if(url.pathname==='/api/state')return send(res,200,{workspace:mode,state:states[mode],queue:queue(mode),status});
       if(url.pathname==='/api/catalog')return send(res,200,{integrations:integrationCatalog});
       if(url.pathname==='/api/activity')return send(res,200,{activity:activity.filter(x=>x.mode===mode),status});
@@ -79,7 +154,8 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
       return send(res,404,{error:'Unknown endpoint'});
     }
     if(req.method!=='POST')return send(res,405,{error:'Method not allowed'});
-    if(req.headers.origin!==origin||req.headers['x-lifeweave-csrf']!==found.csrf)return send(res,403,{error:'Local origin and CSRF token required'});
+    if(req.headers.origin!==origin||req.headers['x-lifeweave-csrf']!==found.csrf)return send(res,403,{error:'Local origin and CSRF token required',...(modelPaths.has(url.pathname)?{code:'local-origin-and-csrf-required'}:{})});
+    if(url.pathname==='/api/model-proposals'||url.pathname==='/api/model-proposals/review')return modelRequest(req,res,url,mode);
     const body=await readBody(req);
     // Serialize state changes so two browser tabs cannot silently overwrite one another.
     const operation=writeQueue.then(async()=>{
@@ -114,6 +190,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
         const index=state.connections.findIndex(c=>c.id==='local-import');
         if(index<0)state.connections.push(connection);else state.connections[index]=connection;
         if(body.health!==true)state.observations=state.observations.filter(o=>o.connectorId!=='local-import'||o.kind!=='health.sleep');
+        state.plans=(state.plans||[]).filter(p=>p.evidenceRefs.every(id=>state.observations.some(o=>o.id===id)));
         await persist(mode,state);log('consent',`Allowed local evidence: ${scopes.join(', ')}`,mode);
       } else if(url.pathname==='/api/revoke') {
         const connection=state.connections.find(c=>c.id===body.connectorId);
@@ -130,6 +207,7 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
       } else if(url.pathname==='/api/reset-demo'&&mode==='demo') {
         state=createDemoState(clock());await persist(mode,state);log('demo','Regenerated synthetic sample data',mode);
       } else {return send(res,404,{error:'Unknown endpoint'});}
+      invalidateProposals(mode);
       return send(res,200,{ok:true,state,queue:queue(mode),status});
     });
     writeQueue=operation.catch(()=>{});
@@ -159,13 +237,15 @@ export async function createLocalServer({port=4317,dataDir=path.join(ROOT,'.priv
   });
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve);});
   origin=`http://127.0.0.1:${server.address().port}`;
+  // Cookies do not isolate ports. Separate names keep concurrent local hosts independent.
+  sessionCookieName=`lifeweave_session_${server.address().port}`;
   log('worker','Local proactive evaluator started. No external notifications or actions.', 'demo');
   return {server,origin,status,close:async()=>{clearInterval(timer);status.workerRunning=false;await writeQueue;await new Promise(resolve=>server.close(resolve));}};
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const port=Number(process.env.LIFEWEAVE_PORT||4317);
-  const local=await createLocalServer({port,dataDir:process.env.LIFEWEAVE_DATA_DIR});
+  const local=await createLocalServer({port,dataDir:process.env.LIFEWEAVE_DATA_DIR,modelConfig:readHostModelConfig()});
   console.log(JSON.stringify({event:'lifeweave.ready',url:local.origin,workerIntervalMs:local.status.intervalMs,storage:'local private directory',externalActions:false}));
   const parentPid=Number(process.env.LIFEWEAVE_PARENT_PID);
   if(Number.isSafeInteger(parentPid)&&parentPid>1){const monitor=setInterval(()=>{try{process.kill(parentPid,0);}catch(error){if(error.code==='ESRCH'){clearInterval(monitor);local.close().then(()=>process.exit(0));}}},3000);monitor.unref();}

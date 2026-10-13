@@ -124,6 +124,12 @@ final class LifeweaveApp: NSObject, NSApplicationDelegate, WKNavigationDelegate,
         process.environment = ["PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "LANG": "en_US.UTF-8",
                                "LIFEWEAVE_PORT": "0", "LIFEWEAVE_DATA_DIR": storage.path,
                                "LIFEWEAVE_PARENT_PID": String(getpid())]
+        // Explicit presentation configuration only; the backend validates loopback URL and bounds.
+        for key in ["LIFEWEAVE_MODEL", "LIFEWEAVE_MODEL_ENDPOINT", "LIFEWEAVE_MODEL_MAX_REQUESTS", "LIFEWEAVE_MODEL_TIMEOUT_MS"] {
+            if let value = ProcessInfo.processInfo.environment[key], value.utf8.count <= 512 {
+                process.environment?[key] = value
+            }
+        }
         let output = Pipe(); let errors = Pipe()
         process.standardOutput = output; process.standardError = errors
         process.terminationHandler = { [weak self] _ in

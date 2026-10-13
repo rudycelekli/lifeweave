@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "at": "2026-10-13T07:57:56.272Z",
+  "kind": "bounded-synthetic-local-model-canary",
+  "maximumInferenceAttempts": 1,
+  "privateSourcesUsed": false,
+  "personalAccountAccess": false,
+  "externalActions": 0,
+  "model": {
+    "service": "Ollama",
+    "installedServerVersion": "0.13.0",
+    "knownRemoteMetadata": false,
+    "gguf": true,
+    "parameters": 494032768,
+    "modelNamePublic": false
+  },
+  "cost": {
+    "providerSpendUsd": 0,
+    "totalCostUsd": null
+  },
+  "limits": [
+    "One invented goal and record; not a general output quality benchmark",
+    "Service-reported metadata and local weights support this candidate; generic loopback does not establish local execution",
+    "No recurring model calls or user model configuration was registered"
+  ],
+  "latencyMs": 4578,
+  "httpStatus": 409,
+  "accepted": false,
+  "resultCode": "invalid-surface-frame",
+  "originalGoalAndMeasurementsUnchanged": true,
+  "inferenceAttempts": 1,
+  "sourceHashes": [
+    {
+      "file": "packages/planner/src/index.mjs",
+      "sha256": "45dd6cc1ebc1cc50df5719eb506bc6613e76a42d8e964fe2c98eb5c76a81b653"
+    },
+    {
+      "file": "apps/web/server.mjs",
+      "sha256": "b98f1256994a63362e5a96e377855d5f54d5af77db5383caf13bea8ee021ca4d"
+    },
+    {
+      "file": "apps/web/host-model.mjs",
+      "sha256": "96b9ed4f6e88eb830d6d323a945e60b732a288b6d0ed228810fd315652dcbe19"
+    }
+  ],
+  "setup": {
+    "attempts": 2,
+    "initialFailure": "Synthetic display quiet hours suppressed the initial fixture; zero inference attempts at that stage",
+    "resolution": "Explicit synthetic UTC attention settings before the single inference"
+  }
+}

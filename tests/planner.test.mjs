@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createDemoState, DEMO_CLOCK } from '../packages/core/src/index.mjs';
-import { createModelPlanner, ModelPlannerError } from '../packages/planner/src/index.mjs';
+import { createDemoState, DEMO_CLOCK, evaluate } from '../packages/core/src/index.mjs';
+import { createModelPlanner, ModelPlannerError, revalidateModelProposal } from '../packages/planner/src/index.mjs';
 
 const endpoint = 'http://127.0.0.1:11434/v1/chat/completions';
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -21,7 +21,8 @@ test('actual mocked chatcompletion produces a review-only grounded presentation 
   const { planner, calls } = mockPlanner((frame) => { frame.title = 'Pick a focused session'; frame.blocks.reverse(); frame.blocks.find((block) => block.type === 'calculator').inputs[0].value = 30; });
   const state = createDemoState(), before = JSON.stringify(state), proposal = await planner.propose(input(state));
   assert.equal(proposal.requiresReview, true);
-  assert.deepEqual(proposal.provenance, { kind: 'model-proposal', model: 'test-model', requestCount: 1 });
+  assert.deepEqual({kind:proposal.provenance.kind,model:proposal.provenance.model,requestCount:proposal.provenance.requestCount}, { kind: 'model-proposal', model: 'test-model', requestCount: 1 });
+  assert(Number.isFinite(Date.parse(proposal.provenance.validatedAt)));
   assert.equal(proposal.surface.goalId, 'goal-learning');
   assert.equal(proposal.surface.title, 'Pick a focused session');
   assert.equal(JSON.stringify(state), before);
@@ -154,4 +155,49 @@ test('consent revoked during model await invalidates otherwise valid response', 
     state.connections[1].status = 'disconnected'; return reply(base);
   } });
   await assert.rejects(planner.propose(input(state)), /grounding-changed/);
+});
+
+test('fresh injected clock detects expiry during await instead of reusing the request clock', async () => {
+  const state=createDemoState();let now=DEMO_CLOCK;
+  const planner=createModelPlanner({endpoint,model:'m',clock:()=>now,fetchImpl:async(_url,init)=>{
+    const base=JSON.parse(JSON.parse(init.body).messages[1].content).baseSurface;
+    now='2026-10-13T19:00:00Z';return reply(base);
+  }});
+  await assert.rejects(planner.propose({...input(state),clock:()=>now}),error=>error.code==='proposal-expired');
+});
+
+test('post-await state getter observes a newly replaced revoked state object', async () => {
+  let current=createDemoState();const initial=current;
+  const planner=createModelPlanner({endpoint,model:'m',clock:()=>DEMO_CLOCK,fetchImpl:async(_url,init)=>{
+    const base=JSON.parse(JSON.parse(init.body).messages[1].content).baseSurface;
+    current=clone(current);current.connections[1].status='disconnected';return reply(base);
+  }});
+  await assert.rejects(planner.propose({...input(initial),getCurrentState:()=>current}),/grounding-changed/);
+  assert.equal(initial.connections[1].status,'connected');
+});
+
+test('a new response clock permits stable grounding without extending original expiration', async () => {
+  let now=DEMO_CLOCK;let base;const state=createDemoState();
+  const planner=createModelPlanner({endpoint,model:'m',clock:()=>now,fetchImpl:async(_url,init)=>{
+    base=JSON.parse(JSON.parse(init.body).messages[1].content).baseSurface;
+    now='2026-10-13T16:00:30Z';return reply(base);
+  }});
+  const result=await planner.propose(input(state));
+  assert.equal(result.provenance.validatedAt,'2026-10-13T16:00:30.000Z');
+  assert.equal(result.surface.createdAt,DEMO_CLOCK);
+  assert.equal(result.surface.expiresAt,'2026-10-13T19:00:00.000Z');
+  assert.throws(()=>revalidateModelProposal(result,{state,baseSurface:base,now:'2026-10-13T19:00:00Z'}),/proposal-expired/);
+});
+
+test('goal changes, moved consent expiration and regressing clocks invalidate review', async () => {
+  const state=createDemoState();let base;
+  const planner=createModelPlanner({endpoint,model:'m',clock:()=>DEMO_CLOCK,fetchImpl:async(_url,init)=>{base=JSON.parse(JSON.parse(init.body).messages[1].content).baseSurface;return reply(base);}});
+  const result=await planner.propose(input(state));
+  base=evaluate(state,{now:DEMO_CLOCK}).surfaces.find(frame=>frame.goalId==='goal-learning');
+  const snapshot=clone(state.goals[1]);
+  const changed=clone(state);changed.goals[1].title='A different objective';
+  assert.throws(()=>revalidateModelProposal(result,{state:changed,baseSurface:base,goalSnapshot:snapshot,now:DEMO_CLOCK}),/grounding-changed/);
+  const consent=clone(state);consent.connections[1].expiresAt='2026-10-13T17:00:00Z';
+  assert.throws(()=>revalidateModelProposal(result,{state:consent,baseSurface:base,now:DEMO_CLOCK}),/grounding-expiration-changed/);
+  assert.throws(()=>revalidateModelProposal(result,{state,baseSurface:base,now:'2026-10-13T15:00:00Z'}),/grounding-clock-regressed/);
 });

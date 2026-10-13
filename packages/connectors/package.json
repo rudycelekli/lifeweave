@@ -1,11 +1,11 @@
 {
   "name": "@lifeweave/connectors",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "type": "module",
   "description": "Read-only, host-owned observation adapters for LifeWeave",
   "exports": { ".": { "types": "./src/index.d.ts", "import": "./src/index.mjs" } },
   "files": ["src", "README.md"],
-  "dependencies": { "@lifeweave/core": "0.1.0-alpha.1" },
+  "dependencies": { "@lifeweave/core": "0.1.0-alpha.2" },
   "license": "Apache-2.0",
   "engines": { "node": ">=22" }
 }

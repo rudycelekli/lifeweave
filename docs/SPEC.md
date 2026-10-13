@@ -31,7 +31,7 @@ on external action request:
 
 ## Refinement
 
-Validate the evaluator against synthetic positives, negatives and adversarial cases. Separate fixtures from private historical data, and both from future user-rated/live evaluation. Compare rule-driven baseline to any future model planner on precision, recall, usefulness, harmful suggestions, interruptions, latency, total provider cost and human oversight. No model-backed experiment or clinical/behavioral effectiveness study is included in this iteration.
+Validate the evaluator against synthetic positives, negatives and adversarial cases. Separate fixtures from private historical data, and both from future user-rated/live evaluation. Compare rule-driven baseline to a model planner on precision, recall, usefulness, harmful suggestions, interruptions, latency, total provider cost and human oversight. One bounded local-model transport canary used invented data and was rejected; it is not an output-quality evaluation or a clinical/behavioral effectiveness study.
 
 ## Completion gates
 
