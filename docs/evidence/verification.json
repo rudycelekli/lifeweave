@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "at": "2026-10-13T07:18:07.629Z",
+  "status": "passed",
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "checks": {
+    "tests": {
+      "passed": true,
+      "exitCode": 0
+    },
+    "types": {
+      "passed": true,
+      "exitCode": 0
+    },
+    "replay": {
+      "passed": true,
+      "exitCode": 0
+    }
+  },
+  "tests": 68,
+  "sourceHashes": [
+    {
+      "file": "packages/connectors/package.json",
+      "sha256": "58b0ccb932a3feae29254e6a17cfd29b0087257499363861fac5ed2c6843cdac"
+    },
+    {
+      "file": "packages/connectors/src/index.d.ts",
+      "sha256": "79ebb889fa80fe78ce8ad987bf9c0b5eb5914bed956d8c39963e94d8d782b29a"
+    },
+    {
+      "file": "packages/connectors/src/index.mjs",
+      "sha256": "edee399bd79817532d735ae766dd246fc3edb9551d418305bd495bb2f85bbc6e"
+    },
+    {
+      "file": "packages/core/package.json",
+      "sha256": "8c8cd15da2500ed7a31e833fa1b01a7c8c3bbc793b085d347ace4af4c88fed88"
+    },
+    {
+      "file": "packages/core/scripts/verify.mjs",
+      "sha256": "f126137831a16f0fff1202e12f53235f9dbdd251bb08df687fa45cc75d415f23"
+    },
+    {
+      "file": "packages/core/src/action-policy/application/evaluate-consent.mjs",
+      "sha256": "e278af55987b3307aec98aea8cd804d9fd1538e91807ef20228f6b10bcc17366"
+    },
+    {
+      "file": "packages/core/src/action-policy/domain/capabilities.mjs",
+      "sha256": "9f412c5e8cd62c681a14d40e7b42f3ebe4e53d32ddad10909b55989498d8e6fd"
+    },
+    {
+      "file": "packages/core/src/action-policy/index.mjs",
+      "sha256": "7c7824c31ca6cc2cc714bf7c2119d15acfb6e01066e36fecc9256ec2bb229a02"
+    },
+    {
+      "file": "packages/core/src/demo.mjs",
+      "sha256": "4c0b3a4c47428e3f9056eb46dc4cfe8457bf45804a8be4e7f3a7bf71fe44d820"
+    },
+    {
+      "file": "packages/core/src/goal-system/domain/goal.mjs",
+      "sha256": "58ab1ae115528253f4c136a837e0a4f86f5656fe533262bafe530e1d499bbe3a"
+    },
+    {
+      "file": "packages/core/src/goal-system/index.mjs",
+      "sha256": "f84125c8f9c07a7509d4636b848a4b202563c27c61a53e24ad5dc1a69e30562f"
+    },
+    {
+      "file": "packages/core/src/index.d.ts",
+      "sha256": "4376b09118e586c84da9f73360aabebf33be92c1ced48baedb1eb9f0af7e0533"
+    },
+    {
+      "file": "packages/core/src/index.mjs",
+      "sha256": "155614737277f51b4b395ea1a6ff6d9b1114e261b1b85a914c34284339c2e46a"
+    },
+    {
+      "file": "packages/core/src/observations/application/ingest.mjs",
+      "sha256": "b8fb95adf18406825afb155fe051b7a96722b313e2b0001d21633f4f88f34ffc"
+    },
+    {
+      "file": "packages/core/src/observations/domain/observation.mjs",
+      "sha256": "9db8bff0b523bf4a1c76b929507410a35eb75fc0afd018e71762c8576a0350e0"
+    },
+    {
+      "file": "packages/core/src/observations/index.mjs",
+      "sha256": "477709f43a456b683e4e6a173a860dee0ca89dc5ddb193dc0f9869b8565a2f8b"
+    },
+    {
+      "file": "packages/core/src/proactive-planning/application/evaluate.mjs",
+      "sha256": "4e51e75e0ee5fd189742abb172b807881607a6c2b5c784ed4a9e3cb549e78970"
+    },
+    {
+      "file": "packages/core/src/proactive-planning/application/feedback.mjs",
+      "sha256": "a4c386d98591b503affdc1f070378bb691bee3a9667cd7561fdbfa4882594e18"
+    },
+    {
+      "file": "packages/core/src/proactive-planning/domain/expression.mjs",
+      "sha256": "c01781eaba16a30454583d0987d99b4d1c1a8f33fb715dc8aa9da9a088832ecf"
+    },
+    {
+      "file": "packages/core/src/proactive-planning/domain/surface.mjs",
+      "sha256": "c8f1d194af9aaa3ecd109f5e1d1bc7fe1154ac65ffcc64b6fab9b4a232efceb6"
+    },
+    {
+      "file": "packages/core/src/proactive-planning/index.mjs",
+      "sha256": "97f3e36751ba4c3de9e9169743c07be66bc71ed757dc4282028ad40868a27a84"
+    },
+    {
+      "file": "packages/core/src/shared/time.mjs",
+      "sha256": "74ec79af2cafe976ffa7dec9ce9c605cf64cc6048fa847c81eff01bbceb2426b"
+    },
+    {
+      "file": "packages/core/src/shared/validation.mjs",
+      "sha256": "4a6dccc5a83a21b656400375c3deaef745f8181b39608417813c861416135ca4"
+    },
+    {
+      "file": "packages/core/src/state.mjs",
+      "sha256": "956d932e38b97a86188ae1d463de3b61021d1dffc7dc18c181ca40d4576b9737"
+    },
+    {
+      "file": "packages/planner/package.json",
+      "sha256": "621a5d90439930e9651c6412ccdd46465130c210fa756db4da8e8a5fe6f9a8fb"
+    },
+    {
+      "file": "packages/planner/scripts/verify.mjs",
+      "sha256": "8991d4aa828efd1a0b7f233182a8e27e6f3f6bacb0ce3116fe2076ff53cadcc3"
+    },
+    {
+      "file": "packages/planner/src/index.d.ts",
+      "sha256": "19687a2df28dd0aee134077d58a4ca4ee3f31b79e3fc7384e7604045c1e15909"
+    },
+    {
+      "file": "packages/planner/src/index.mjs",
+      "sha256": "7ad03808fe52021381c5f0be197c87793b71b77380221393fc5cded83ac5720e"
+    },
+    {
+      "file": "packages/ui/package.json",
+      "sha256": "4cd19085a2bdca20674ee257e41b6e32143bee3851b6e88d61a9a225ea740d4d"
+    },
+    {
+      "file": "packages/ui/src/index.d.ts",
+      "sha256": "294fa4f3be7ea75f2e197fdaf74627438251168a89f8efc98ba6b17c84a0c63d"
+    },
+    {
+      "file": "packages/ui/src/index.mjs",
+      "sha256": "142ef2f1361228a52527979f4ccde4d3adba035e4383bc1376949e43389d720d"
+    },
+    {
+      "file": "packages/ui/src/react.d.ts",
+      "sha256": "f9b86fa80a00789c3a14a63d04e9be8077ae27bd7bbf10e3e80e66d97815e8a8"
+    },
+    {
+      "file": "packages/ui/src/react.mjs",
+      "sha256": "0a48980338f44466b23c8d4f42445508672835e0d1356e3722b743e36cf06349"
+    },
+    {
+      "file": "packages/ui/src/styles.css",
+      "sha256": "6224a52921366caa1eb77f01a3a883c86c2cb7032fae0968254e9aa590779023"
+    },
+    {
+      "file": "apps/desktop/Lifeweave.swift",
+      "sha256": "99347ec95e9299e245f31d36112258b9575867f568386443c18969c7b84231c6"
+    },
+    {
+      "file": "apps/web/app.css",
+      "sha256": "005417be2f3c0f0ca18258caa6a358517249768fcc45e694545384cb734a152d"
+    },
+    {
+      "file": "apps/web/app.mjs",
+      "sha256": "1579959a8713817aedef7f2a50c3538d881bf6e640bcd8dd2e54094cb8161578"
+    },
+    {
+      "file": "apps/web/index.html",
+      "sha256": "f46615f546e16137b36fcf1b165954eb3bbcdda95969306b7bb3591fe2a2b2a4"
+    },
+    {
+      "file": "apps/web/manifest.json",
+      "sha256": "6b623feba4e624b62f7b4128536e0a09f4cc92e1ef5cd2b88b8175ae4897216b"
+    },
+    {
+      "file": "apps/web/server.mjs",
+      "sha256": "7c42144caa25d84b64c8c90c3308d8ceb31dc7674f63b009012abab7f491e19f"
+    },
+    {
+      "file": "tests/connectors.test.mjs",
+      "sha256": "ff2f5e93ffc73426276ef2b8cc3aaa6233ffc982f3c0f3e3a3747c47c377de7c"
+    },
+    {
+      "file": "tests/core-calculator.test.mjs",
+      "sha256": "5abbe1c82ff78ce36d411a86ca791ddff1f7579472f139008b36dbfd0e5b6fac"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "sha256": "c8fdb75f8d9701bcc944f911ee02e5ac502098040df19a98d33b6d679b511368"
+    },
+    {
+      "file": "tests/package.test.mjs",
+      "sha256": "1a6312d8b4a5d17fad6ec8b6cf7e5364b68cbce39249a25071940868d3126624"
+    },
+    {
+      "file": "tests/planner.test.mjs",
+      "sha256": "5843f76326f7c254c2beac1a7c8fba0b4d9548980221ca706ae1c5b6b16e9800"
+    },
+    {
+      "file": "tests/server.test.mjs",
+      "sha256": "730a2c2ba4b13fec4f854be3098202856ab046c73c6d8ce5bd5c417998800f0e"
+    },
+    {
+      "file": "tests/types.test.ts",
+      "sha256": "e911893feecb7a9f8544dda052e1cba70d68106ffec7f3eda64ff8c4040976ba"
+    },
+    {
+      "file": "tests/ui.test.mjs",
+      "sha256": "021bef2d090e4eccd2e5691413b157ef7a76ed9b0aad95cde4886c3f146137d4"
+    },
+    {
+      "file": "scripts/bootstrap.mjs",
+      "sha256": "3391d7578bb1cda294e2711015b91a230168b433fedb4ad14db7a98c656f0b66"
+    },
+    {
+      "file": "scripts/build-desktop.mjs",
+      "sha256": "ea4e8442c0fbd6bddeeb5c5112d8edcbc8d4831db012a1773a117f61731779b7"
+    },
+    {
+      "file": "scripts/package.mjs",
+      "sha256": "a00f759645603fe777702b188f12cd63be9fa4bd47719b5e7fda0486359708bd"
+    },
+    {
+      "file": "scripts/replay.mjs",
+      "sha256": "0f7e21bff1bdf2b32c85127ee52ebceaf25c57ae1d1a5ee92ffd04337fb525f4"
+    },
+    {
+      "file": "scripts/start.mjs",
+      "sha256": "83f16355f05c62a243cf4751ff4a6356a2862b023647ab273d5419d5312679f7"
+    },
+    {
+      "file": "scripts/verify.mjs",
+      "sha256": "3b4e69be9c6af839a440af80ea833da029ff7525c0deb21f1319c2abf153421e"
+    }
+  ],
+  "providerCalls": 0,
+  "externalActions": 0,
+  "cost": {
+    "providerSpendUsd": 0,
+    "totalCostUsd": null,
+    "humanOversightMinutes": null
+  },
+  "liveAccounts": "unconnected",
+  "multiUserEnterprise": "not-implemented",
+  "lifeOutcomeEvidence": "not-measured",
+  "note": "Provider contracts use mocks; local API tests use isolated synthetic data. Browser/native/package receipts are separate."
+}

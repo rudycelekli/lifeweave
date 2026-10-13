@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf0e8">
+  <meta name="description" content="A local, proactive workspace for your goals and the evidence that matters.">
+  <title>LifeWeave · Your goals, in motion</title>
+  <link rel="icon" href="/apps/web/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/apps/web/manifest.json">
+  <link rel="stylesheet" href="/packages/ui/src/styles.css">
+  <link rel="stylesheet" href="/apps/web/app.css">
+  <script type="importmap">{"imports":{"@lifeweave/core":"/packages/core/src/index.mjs"}}</script>
+  <script type="module" src="/apps/web/app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to workspace</a>
+  <div id="app"><p class="loading">Opening your local workspace…</p></div>
+  <div id="announcement" role="status" aria-live="polite"></div>
+  <noscript>LifeWeave needs JavaScript to render its local workspace. No account is needed for the sample.</noscript>
+</body>
+</html>

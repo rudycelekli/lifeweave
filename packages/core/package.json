@@ -1,0 +1,13 @@
+{
+  "name": "@lifeweave/core",
+  "version": "0.1.0-alpha.1",
+  "description": "Evidence-linked proactive life surfaces with explicit capability consent",
+  "type": "module",
+  "main": "./src/index.mjs",
+  "types": "./src/index.d.ts",
+  "exports": { ".": { "types": "./src/index.d.ts", "import": "./src/index.mjs" } },
+  "files": ["src", "README.md"],
+  "engines": { "node": ">=22" },
+  "license": "Apache-2.0",
+  "scripts": { "test": "node --test ../../tests/core*.test.mjs", "verify": "node scripts/verify.mjs" }
+}

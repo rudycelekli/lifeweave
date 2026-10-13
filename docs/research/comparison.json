@@ -1,0 +1,447 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-13T05:30:52.749Z",
+  "validation": "static-source-and-GitHub-CI-metadata",
+  "screened": false,
+  "localRuntimeValidated": false,
+  "repositories": [
+    {
+      "id": "copilotkit",
+      "name": "CopilotKit/OpenIntelligentUI",
+      "url": "https://github.com/CopilotKit/OpenIntelligentUI",
+      "revision": "9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b",
+      "role": "Streaming generative UI and agent transport",
+      "license": "MIT",
+      "proactivity": "No personal scheduler/event intake observed",
+      "generativeUI": "A2UI plus streamed HTML/CSS/JS in Websandbox; narrow host bridge",
+      "integrations": "LangGraph/Deep Agent, optional MCP Apps; sample CSV and public trip images",
+      "security": "BYOK stream scoping; generated prompt is not human authorization; rate limit off by default",
+      "distribution": "Next.js + Python + provider/router keys; optional MCP HTML assembler",
+      "reuse": [
+        "AG-UI adapter",
+        "Native plus sandbox rendering rails",
+        "Validated prompt/link bridge",
+        "Provider failure propagation"
+      ],
+      "avoid": [
+        "Mandatory second router vendor",
+        "Ephemeral checkpoints as life-state store",
+        "Shared credentials without authenticated quotas",
+        "Default install telemetry"
+      ],
+      "sourceRefs": [
+        "C-agent",
+        "C-runtime",
+        "C-functions",
+        "C-credentials",
+        "C-router",
+        "C-telemetry"
+      ],
+      "sourceLinks": [
+        {
+          "id": "C-agent",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/agent/main.py#L36-L77"
+        },
+        {
+          "id": "C-runtime",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/app/src/lib/copilotkit-runtime-options.ts#L24-L43"
+        },
+        {
+          "id": "C-functions",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/app/src/lib/sandbox/sandbox-functions.ts#L11-L109"
+        },
+        {
+          "id": "C-credentials",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/agent/src/credentials.py#L17-L96"
+        },
+        {
+          "id": "C-router",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/agent/src/visualization_router.py#L14-L75"
+        },
+        {
+          "id": "C-telemetry",
+          "url": "https://github.com/CopilotKit/OpenIntelligentUI/blob/9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b/apps/app/src/lib/launch-telemetry.ts#L11-L50"
+        }
+      ]
+    },
+    {
+      "id": "thesys",
+      "name": "thesysdev/open-intelligent-ui",
+      "url": "https://github.com/thesysdev/open-intelligent-ui",
+      "revision": "d789417ddf87699681b49f2675f7bceba42fdd65",
+      "role": "Declarative reactive UI reference",
+      "license": "No tracked LICENSE; GitHub license null",
+      "proactivity": "Chat/UI-action driven; no scheduler observed",
+      "generativeUI": "OpenUI Lang 1.0 component/function catalog; local reactive state; HtmlView escape hatch",
+      "integrations": "OpenUI Gateway or direct/Ollama-compatible model; public image/map services",
+      "security": "Opaque iframe with CSP; arbitrary HTTPS image URLs remain; chat handler lacks user auth",
+      "distribution": "Small Node 24 private app; browser localStorage; licensing prerequisite before copying",
+      "reuse": [
+        "Schema-derived catalogs",
+        "Deterministic interaction functions",
+        "Parser/catalog conformance",
+        "Saved-answer replay benchmarks"
+      ],
+      "avoid": [
+        "Copying source without clarified license",
+        "Whole-life data in unencrypted localStorage",
+        "Private data in generated network URLs",
+        "Gateway correction as sole validator"
+      ],
+      "sourceRefs": [
+        "T-library",
+        "T-patterns",
+        "T-chat",
+        "T-html",
+        "T-storage",
+        "T-bench"
+      ],
+      "sourceLinks": [
+        {
+          "id": "T-library",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/src/lib/library.ts#L31-L71"
+        },
+        {
+          "id": "T-patterns",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/src/lib/functions/__tests__/patterns.test.ts#L5-L60"
+        },
+        {
+          "id": "T-chat",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/src/app/api/chat/route.ts#L30-L176"
+        },
+        {
+          "id": "T-html",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/src/lib/components/html-view.tsx#L8-L79"
+        },
+        {
+          "id": "T-storage",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/src/lib/chat-storage.tsx#L6-L81"
+        },
+        {
+          "id": "T-bench",
+          "url": "https://github.com/thesysdev/open-intelligent-ui/blob/d789417ddf87699681b49f2675f7bceba42fdd65/scripts/bench/run.mjs#L1-L108"
+        }
+      ]
+    },
+    {
+      "id": "hermes",
+      "name": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "revision": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+      "role": "Optional agent and communication runtime",
+      "license": "MIT",
+      "proactivity": "Durable cron, hash-change monitor, per-session heartbeat and execution goals",
+      "generativeUI": "CLI/TUI/web/desktop and messaging UIs; no portable life-UI catalog in inspected core",
+      "integrations": "Broad messaging gateways, Google/email/Apple skills, MCP OAuth, sandbox and native computer backends",
+      "security": "Single tenant; terminal sandbox does not contain host interpreter/plugins/MCP; whole-process isolation required",
+      "distribution": "Large multi-platform runtime; release v0.21.7 differs from manifest versions",
+      "reuse": [
+        "Isolated optional runtime bridge",
+        "Cheap no-change gating",
+        "Session/heartbeat ownership",
+        "Completion contracts",
+        "Connector state machine"
+      ],
+      "avoid": [
+        "Privileged runtime embedded into core",
+        "YOLO normal operating mode",
+        "Fail-open helpers for authority decisions",
+        "Model judge as life-outcome proof"
+      ],
+      "sourceRefs": [
+        "H-security",
+        "H-monitor",
+        "H-heartbeat",
+        "H-goals",
+        "H-delivery",
+        "H-connect-contract"
+      ],
+      "sourceLinks": [
+        {
+          "id": "H-security",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/SECURITY.md#L32-L149"
+        },
+        {
+          "id": "H-monitor",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/cron/monitor.py#L1-L186"
+        },
+        {
+          "id": "H-heartbeat",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/hermes_cli/heartbeat.py#L216-L246"
+        },
+        {
+          "id": "H-goals",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/hermes_cli/goals.py#L1-L80"
+        },
+        {
+          "id": "H-delivery",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/cron/scheduler_delivery.py#L29-L120"
+        },
+        {
+          "id": "H-connect-contract",
+          "url": "https://github.com/NousResearch/hermes-agent/blob/63d0b94120027d487c9a5235b9ec64b696af1b26/tools/connectors/contract.py#L51-L74"
+        }
+      ]
+    },
+    {
+      "id": "rea",
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea",
+      "revision": "8b181716aca2cb467be499cba226abfb5ae19141",
+      "role": "Evidence/effect architecture reference; optional opaque-source investigation",
+      "license": "MIT root; separate third-party notices",
+      "proactivity": "No whole-life intervention scheduler; analysis tool",
+      "generativeUI": "Evidence returned to consuming host; not generative personal UI",
+      "integrations": "Local artifacts/binaries/JavaScript and optional native/browser/device providers",
+      "security": "Explicit effects, untrusted target provenance, resource ownership; MCP hints still need host enforcement",
+      "distribution": "CLI/MCP npm package 6.4.0; platform/provider prerequisites",
+      "reuse": [
+        "Observed/derived/inferred evidence",
+        "Effects vocabulary",
+        "Source-linked receipts",
+        "Residual unknowns",
+        "Bounded ownership and cleanup"
+      ],
+      "avoid": [
+        "Unneeded instrumentation when source available",
+        "REA in minimal everyday install",
+        "Treating effect metadata as authorization",
+        "Assuming root license covers every bundled helper"
+      ],
+      "sourceRefs": [
+        "R-evidence",
+        "R-effects",
+        "R-records",
+        "R-resources",
+        "R-readme"
+      ],
+      "sourceLinks": [
+        {
+          "id": "R-evidence",
+          "url": "https://github.com/morluto/rea/blob/8b181716aca2cb467be499cba226abfb5ae19141/src/domain/evidence.ts#L98-L169"
+        },
+        {
+          "id": "R-effects",
+          "url": "https://github.com/morluto/rea/blob/8b181716aca2cb467be499cba226abfb5ae19141/src/contracts/toolEffects.ts#L627-L688"
+        },
+        {
+          "id": "R-records",
+          "url": "https://github.com/morluto/rea/blob/8b181716aca2cb467be499cba226abfb5ae19141/src/application/investigation/InvestigationRecordPort.ts#L15-L89"
+        },
+        {
+          "id": "R-resources",
+          "url": "https://github.com/morluto/rea/blob/8b181716aca2cb467be499cba226abfb5ae19141/src/process/ArtifactAnalysisResources.ts#L34-L129"
+        },
+        {
+          "id": "R-readme",
+          "url": "https://github.com/morluto/rea/blob/8b181716aca2cb467be499cba226abfb5ae19141/README.md#L151-L187"
+        }
+      ]
+    },
+    {
+      "id": "open-dots",
+      "name": "Anil-matcha/open-dots",
+      "url": "https://github.com/Anil-matcha/open-dots",
+      "revision": "fb871a1549911981658383f994215fba9dcb3949",
+      "role": "Prototype coding-task and permission reference",
+      "license": "No tracked LICENSE; GitHub license null despite description",
+      "proactivity": "Postgres cron/poll loops, occurrence dedup, failure pause; reports every run",
+      "generativeUI": "Fixed task/schedule/permission cards",
+      "integrations": "Claude CLI OAuth, GitHub device login, Telegram, Boat sandbox, optional Parallel MCP",
+      "security": "Web identity client-controlled; shared hook bearer is not user auth; credentials injected into sandbox",
+      "distribution": "Next.js + FastAPI/Postgres + Boat/tunnel; Python 3.14; no CI runs returned",
+      "reuse": [
+        "Default-ask permission hierarchy as concept",
+        "Encrypted credential records",
+        "Timezone/dedup/recovery ideas"
+      ],
+      "avoid": [
+        "Copying unlicensed source",
+        "Client-supplied identity",
+        "Claim-before-send as durable notification proof",
+        "Sandbox accumulation and cloud-required onboarding"
+      ],
+      "sourceRefs": [
+        "D-task-route",
+        "D-permission-route",
+        "D-permission",
+        "D-scheduler",
+        "D-execution"
+      ],
+      "sourceLinks": [
+        {
+          "id": "D-task-route",
+          "url": "https://github.com/Anil-matcha/open-dots/blob/fb871a1549911981658383f994215fba9dcb3949/backend/app/routers/task.py#L21-L58"
+        },
+        {
+          "id": "D-permission-route",
+          "url": "https://github.com/Anil-matcha/open-dots/blob/fb871a1549911981658383f994215fba9dcb3949/backend/app/routers/permission.py#L60-L127"
+        },
+        {
+          "id": "D-permission",
+          "url": "https://github.com/Anil-matcha/open-dots/blob/fb871a1549911981658383f994215fba9dcb3949/backend/app/services/permission_service.py#L45-L82"
+        },
+        {
+          "id": "D-scheduler",
+          "url": "https://github.com/Anil-matcha/open-dots/blob/fb871a1549911981658383f994215fba9dcb3949/backend/app/services/schedule_service.py#L251-L429"
+        },
+        {
+          "id": "D-execution",
+          "url": "https://github.com/Anil-matcha/open-dots/blob/fb871a1549911981658383f994215fba9dcb3949/backend/app/services/task_execution_service.py#L36-L138"
+        }
+      ]
+    },
+    {
+      "id": "openinstinct",
+      "name": "Merit-Systems/OpenInstinct",
+      "url": "https://github.com/Merit-Systems/OpenInstinct",
+      "revision": "0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8",
+      "role": "Leased proactive assistant and private credential reference",
+      "license": "MIT",
+      "proactivity": "Per-minute durable jobs, worker/report leases, retry/dead-letter/input resumption, useful-only report",
+      "generativeUI": "Chat and browser activity UI; no portable reactive catalog observed",
+      "integrations": "Linq iMessage, Gmail/Calendar/Contacts OAuth, Kernel browser, optional Stripe Link",
+      "security": "Principal/workspace/session ownership; scheduled Gmail/Calendar read-only subsets, but browser actions remain broader",
+      "distribution": "Eve/Next.js with Vercel/Linq/Kernel/Blob/Postgres ecosystem; paid-plan requirement documented",
+      "reuse": [
+        "Worker/report separation",
+        "Lease fencing",
+        "Occurrence uniqueness",
+        "Revisioned workstreams",
+        "Opaque origin-bound secret handles"
+      ],
+      "avoid": [
+        "Assuming all background execution is read-only",
+        "Unbrokered browser actions",
+        "Required hosted-vendor stack",
+        "Write-scoped onboarding for basic read access"
+      ],
+      "sourceRefs": [
+        "I-schedule",
+        "I-lease",
+        "I-gmail",
+        "I-calendar",
+        "I-run-browser",
+        "I-vault",
+        "I-workstreams"
+      ],
+      "sourceLinks": [
+        {
+          "id": "I-schedule",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/agent/schedules/dynamic.ts#L15-L136"
+        },
+        {
+          "id": "I-lease",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/db/services/scheduled-agent-run-leases.ts#L4-L19"
+        },
+        {
+          "id": "I-gmail",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/agent/tools/gmail.ts#L52-L82"
+        },
+        {
+          "id": "I-calendar",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/agent/tools/calendar.ts#L39-L66"
+        },
+        {
+          "id": "I-run-browser",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/agent/tools/run_browser.ts#L5-L23"
+        },
+        {
+          "id": "I-vault",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/db/services/vault.ts#L173-L224"
+        },
+        {
+          "id": "I-workstreams",
+          "url": "https://github.com/Merit-Systems/OpenInstinct/blob/0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8/agent/memory/workstreams.ts#L25-L112"
+        }
+      ]
+    },
+    {
+      "id": "rakazo",
+      "name": "elie222/rakazo",
+      "url": "https://github.com/elie222/rakazo",
+      "revision": "0394e92c820994ec9978b046f652c3ab4ca85fa5",
+      "role": "Local/hosted/mobile distribution and workspace runtime reference",
+      "license": "Apache-2.0",
+      "proactivity": "Graphile routines and reconciliation; webhook/GitHub intake; ambient team-chat judge defaults silent",
+      "generativeUI": "Shared chat/tool surfaces across web/Electron/Expo; no formal whole-life adaptive artifact kernel identified",
+      "integrations": "Pi/local OpenAI-compatible models, Docker/cloud/trusted-host computers; Composio/Pipedream/MCP/OpenAPI/GraphQL optional",
+      "security": "Membership-derived spaces, scoped connector installs, bounded remote-network policy; routine/shell/browser default policy is permissive",
+      "distribution": "Electron Docker stack or existing server plus Expo native mobile; desktop release v0.2.0, beta",
+      "reuse": [
+        "Provider-neutral adapters",
+        "Concrete local model support",
+        "One API across surfaces",
+        "Durable reconciliation",
+        "Workspace membership",
+        "Quiet team intake",
+        "Exact effect replay"
+      ],
+      "avoid": [
+        "Docker required for first goal card",
+        "Shared bot computer as human privacy model",
+        "Default-allow routine/browser/shell powers",
+        "Assuming hosted connector resale is unconstrained"
+      ],
+      "sourceRefs": [
+        "K-worker",
+        "K-local-model",
+        "K-routine",
+        "K-ambient",
+        "K-scope",
+        "K-approval",
+        "K-stack",
+        "K-mobile"
+      ],
+      "sourceLinks": [
+        {
+          "id": "K-worker",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/apps/worker/src/index.ts#L94-L180"
+        },
+        {
+          "id": "K-local-model",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/packages/adapters/src/pi-local-provider.ts#L10-L115"
+        },
+        {
+          "id": "K-routine",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/packages/adapters/src/executor.ts#L3091-L3240"
+        },
+        {
+          "id": "K-ambient",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/apps/api/src/team-chat-bridge.ts#L797-L879"
+        },
+        {
+          "id": "K-scope",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/packages/db/src/scope.ts#L19-L57"
+        },
+        {
+          "id": "K-approval",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/packages/core/src/action-approval.ts#L3-L121"
+        },
+        {
+          "id": "K-stack",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/apps/desktop/src/local-stack.ts#L61-L107"
+        },
+        {
+          "id": "K-mobile",
+          "url": "https://github.com/elie222/rakazo/blob/0394e92c820994ec9978b046f652c3ab4ca85fa5/apps/mobile/package.json#L1-L74"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "No reviewed repository establishes a normalized whole-life outcome/leading-action/KPI evidence model",
+    "Health connectors and live account provisioning remain unverified",
+    "Read/connect/write/display/notify authority needs one universal policy broker",
+    "Source licensing unresolved for Thesys demo and Open Dots",
+    "World-best and personal outcome claims require protected evaluation and live pilot evidence"
+  ],
+  "recommendation": [
+    "Independent lightweight goal/evidence/proactivity kernel",
+    "Typed artifact contract with optional AG-UI/A2UI/OpenUI adapters",
+    "Optional isolated Hermes/Rakazo/browser execution bridges",
+    "Open-source local desktop foundation; paid operated hosting/sync/push/support and maintained integrations",
+    "Personal and business workspaces with explicit objective ownership and fact-sharing projections",
+    "Durable scheduling, leased workers, delivery outbox and deterministic quiet policy"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-10-13T07:11:58.811Z",
+  "status": "local-qa-verified",
+  "platform": "macos",
+  "architecture": "arm64",
+  "minimumMacOS": "13.5",
+  "artifact": {
+    "relativePath": "dist/desktop/Lifeweave.app",
+    "treeSha256": "56beee293a50215f722629fe7550620a9b94e15f715eb690c9f32820f100990f",
+    "treeHashMethod": "SHA256 of sorted UTF-8 tab-separated relative file path and file SHA256 records, or relative symlink target records; each record ends in newline.",
+    "nativeExecutableSha256": "09f4cd93667f71b2ffb695b48056bd1ecb996c5633fb51841ddd1bbff1d641a7",
+    "infoPlistSha256": "5316f844f1eac91d846154bfc277ae7ab879c874f2619381211c95b02e8c1048",
+    "bundleManifestSha256": "9fafc13b685fd826377111caff2ce9baad2cd656cc9c7dba371fe3db1af89947",
+    "codeResourcesSha256": "b3d0537853f8e82a9e1e8a38bde57a86c4ed2b702b8f6693061a1584e0100580",
+    "nodeSha256": "b49e3d4673bd14b343ff17111df6696e3961701bf36ed981f878e57e24f559ba",
+    "nodeSourceSha256": "743cbaf12bd9323937b85f6297d8182b086526510c9f9c5875fa74d2aad9072d",
+    "nodeLicenseSha256": "148eacf7863ef4329224a29398623077200a27194aa075569faf4a0a85566ca5",
+    "sourceShellSha256": "99347ec95e9299e245f31d36112258b9575867f568386443c18969c7b84231c6",
+    "sourceBuilderSha256": "ea4e8442c0fbd6bddeeb5c5112d8edcbc8d4831db012a1773a117f61731779b7",
+    "webAppSourceSha256": "1579959a8713817aedef7f2a50c3538d881bf6e640bcd8dd2e54094cb8161578"
+  },
+  "runtime": {
+    "source": "supplied-workspace-runtime",
+    "nodeVersion": "v24.19.0",
+    "fullMatchingNodeLicenseRetained": true,
+    "licenseSource": "https://github.com/nodejs/node/blob/v24.19.0/LICENSE",
+    "upstreamBuildPathsPresent": true,
+    "upstreamBuildPathOccurrences": 5688
+  },
+  "signing": {
+    "appSignatureVerified": true,
+    "runtimeSignatureVerified": true,
+    "type": "ad-hoc-local-qa",
+    "developerIDSigned": false,
+    "notarized": false,
+    "appStoreAccepted": false
+  },
+  "packaging": {
+    "publicSourceFiles": 46,
+    "bundleFileCount": 52,
+    "resourceHashesMatch": true,
+    "frozenSourceHashesMatch": true,
+    "finiteWebAssets": 7,
+    "packageCopy": "src, package.json, README.md, optional LICENSE",
+    "generatedInternalCoreLinkVerified": true,
+    "privateDirectoriesIncluded": false,
+    "personalDocumentsIncluded": false,
+    "privateCandidateContentIncluded": false,
+    "generatedVerificationOrTAPIncluded": false,
+    "currentUserPathsFound": false,
+    "sourceAndNativeUserPathsFound": false
+  },
+  "tests": {
+    "originBoundary": {
+      "passed": true,
+      "cases": 17
+    },
+    "nativeSmoke": {
+      "passed": true,
+      "backendReadiness": true,
+      "loopbackEphemeralPort": true,
+      "compiledWebKitContentRules": true,
+      "syntheticWorkspaceControlsRendered": true,
+      "isolatedWorkspaceData": true,
+      "childPortClosedAfterExit": true
+    }
+  },
+  "configuredRuntimeControls": {
+    "externalNavigation": false,
+    "remoteResources": false,
+    "fileURLNavigation": false,
+    "fileUploads": false,
+    "mediaCapture": false,
+    "nativeJavascriptBridge": false,
+    "rendererNodeIntegration": false,
+    "nonpersistentBrowserStorage": true,
+    "minimalChildEnvironment": true,
+    "ownChildTerminatedOnExit": true,
+    "parentPidWatchdog": true
+  },
+  "limitations": [
+    "Local QA artifact only; no app release is authorized by this receipt.",
+    "The supplied runtime contains supplier build/debug paths; runtime provenance and release review remain required.",
+    "macOS arm64 build only; other architectures and OS versions have not been validated.",
+    "No Developer ID signature, notarization, App Store acceptance, updater, or installed background agent.",
+    "Native smoke checks rendered controls and compiled rules; full visual/accessibility and adversarial resource-blocking tests are separate.",
+    "Live provider connections, hosted sync, paid capabilities and multi-tenant business operations require separate integration acceptance."
+  ],
+  "distributionReady": false
+}

@@ -1,0 +1,16 @@
+import {performance} from 'node:perf_hooks';
+import {promises as fs} from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createDemoState,evaluate,DEMO_CLOCK,validateSurface} from '../packages/core/src/index.mjs';
+const root=path.resolve(fileURLToPath(new URL('../',import.meta.url))),state=createDemoState();
+const result=evaluate(state,{now:DEMO_CLOCK,mode:'replay'});
+const expected=['overdue-commitment','focus-opportunity','sleep-reflection','relationship-catchup'];
+if(expected.some(rule=>!result.surfaces.some(surface=>surface.ruleId===rule))||result.surfaces.length!==4||result.surfaces.some(surface=>!validateSurface(surface).valid))throw new Error('Synthetic replay contract failed');
+const revoked=structuredClone(state);revoked.connections.forEach(c=>c.status='disconnected');
+if(evaluate(revoked,{now:DEMO_CLOCK,mode:'replay'}).surfaces.length)throw new Error('Revocation negative control failed');
+const paused=structuredClone(state);paused.goals.forEach(g=>g.status='candidate');
+if(evaluate(paused,{now:DEMO_CLOCK,mode:'replay'}).surfaces.length)throw new Error('Candidate negative control failed');
+const timings=[];for(let i=0;i<200;i++){const start=performance.now();evaluate(state,{now:DEMO_CLOCK,mode:'replay'});timings.push(performance.now()-start);}timings.sort((a,b)=>a-b);
+const report={version:1,at:new Date().toISOString(),fixture:'synthetic-only',clock:DEMO_CLOCK,status:'passed',rules:result.surfaces.map(s=>s.ruleId),surfaces:4,negativeControls:['all connections revoked','all goals candidates'],latency:{repetitions:200,p50Ms:timings[100],p95Ms:timings[190]},modelCalls:0,externalActions:0,lifeOutcomeEvidence:'not-measured',limits:'Repeated synthetic timings and bounded policy controls do not establish real-world utility or competitive superiority.'};
+await fs.mkdir(path.join(root,'docs/evidence'),{recursive:true});await fs.writeFile(path.join(root,'docs/evidence/replay.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));

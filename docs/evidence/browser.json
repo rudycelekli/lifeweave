@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "at": "2026-10-13T07:12:11.250221+00:00",
+  "status": "passed",
+  "source": "Codex in-app browser actual UI interactions",
+  "fixture": "synthetic-only",
+  "checks": [
+    "Four proactive surfaces rendered",
+    "Scenario25 to40 produced35 to20 remaining minutes",
+    "Plan editor preserved40 selected minutes",
+    "Saved local40-minute draft displayed as draft only",
+    "Snooze removed one surface then synthetic reset restored four",
+    "Created custom goal/key result",
+    "Explicitly allowed local synthetic evidence",
+    "Recorded15 against60 target produced fifth goal-linked surface",
+    "Rapid personal to business switch showed empty business state",
+    "Desktop1440px no document overflow",
+    "Mobile390px no document overflow"
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "documentWidth": 1440
+    },
+    {
+      "width": 390,
+      "documentWidth": 390
+    }
+  ],
+  "screenshot": {
+    "file": "docs/assets/workspace.jpg",
+    "sha256": "acf11623bd22301b1a32ad0f607783dd87b1d136285aa812fe8b4deca474ec16",
+    "publicSyntheticOnly": true
+  },
+  "liveAccountActions": 0,
+  "externalActions": 0,
+  "limits": "This is local UI acceptance on synthetic data, not live integration acceptance or longitudinal utility."
+}

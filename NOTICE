@@ -1,0 +1,6 @@
+LifeWeave
+Copyright 2026 LifeWeave contributors
+
+Original LifeWeave source is licensed under Apache License 2.0.
+The source research cites upstream projects as architectural references. No upstream implementation code was copied into the LifeWeave packages.
+The optional desktop bundle includes a host-supplied Node.js runtime with its retained license notices.

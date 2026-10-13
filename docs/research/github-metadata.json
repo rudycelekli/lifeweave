@@ -1,0 +1,1048 @@
+{
+  "retrievedAt": "2026-10-13T05:12:22Z",
+  "repositories": [
+    {
+      "full_name": "CopilotKit/OpenIntelligentUI",
+      "default_branch": "main",
+      "created_at": "2026-03-12T20:40:06Z",
+      "updated_at": "2026-10-13T05:10:29Z",
+      "pushed_at": "2026-10-12T19:08:07Z",
+      "stargazers_count": 2916,
+      "forks_count": 333,
+      "open_issues_count": 95,
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "ci": {
+        "name": "CopilotKit/OpenIntelligentUI",
+        "kind": "ci",
+        "total_count": 2,
+        "runs": [
+          {
+            "id": 38326361503,
+            "name": "CI",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b",
+            "url": "https://github.com/CopilotKit/OpenIntelligentUI/actions/runs/38326361503",
+            "event": "schedule",
+            "created_at": "2026-10-13T00:15:45Z"
+          },
+          {
+            "id": 38295615851,
+            "name": "CI",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "9c982df1a16b734a49d8dd9d1c29b0e4b1b1805b",
+            "url": "https://github.com/CopilotKit/OpenIntelligentUI/actions/runs/38295615851",
+            "event": "push",
+            "created_at": "2026-10-12T19:08:10Z"
+          }
+        ]
+      },
+      "releases": {
+        "name": "CopilotKit/OpenIntelligentUI",
+        "kind": "releases",
+        "releases": []
+      }
+    },
+    {
+      "full_name": "thesysdev/open-intelligent-ui",
+      "default_branch": "main",
+      "created_at": "2026-10-08T05:37:45Z",
+      "updated_at": "2026-10-13T02:37:11Z",
+      "pushed_at": "2026-10-12T15:59:03Z",
+      "stargazers_count": 346,
+      "forks_count": 24,
+      "open_issues_count": 27,
+      "archived": false,
+      "license": null,
+      "ci": {
+        "name": "thesysdev/open-intelligent-ui",
+        "kind": "ci",
+        "total_count": 0,
+        "runs": []
+      },
+      "releases": {
+        "name": "thesysdev/open-intelligent-ui",
+        "kind": "releases",
+        "releases": []
+      }
+    },
+    {
+      "full_name": "NousResearch/hermes-agent",
+      "default_branch": "main",
+      "created_at": "2025-07-22T22:22:28Z",
+      "updated_at": "2026-10-13T05:07:15Z",
+      "pushed_at": "2026-10-13T04:44:39Z",
+      "stargazers_count": 253211,
+      "forks_count": 54885,
+      "open_issues_count": 48179,
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "ci": {
+        "name": "NousResearch/hermes-agent",
+        "kind": "ci",
+        "total_count": 68,
+        "runs": [
+          {
+            "id": 38349950747,
+            "name": "Running Copilot Code Review",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38349950747",
+            "event": "dynamic",
+            "created_at": "2026-10-13T05:09:15Z"
+          },
+          {
+            "id": 38348698098,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348698098",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:54:09Z"
+          },
+          {
+            "id": 38348682242,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348682242",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:53:57Z"
+          },
+          {
+            "id": 38348644081,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348644081",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:53:28Z"
+          },
+          {
+            "id": 38348622240,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348622240",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:53:12Z"
+          },
+          {
+            "id": 38348606050,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348606050",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:52:59Z"
+          },
+          {
+            "id": 38348590975,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348590975",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:52:48Z"
+          },
+          {
+            "id": 38348172580,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348172580",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:47:44Z"
+          },
+          {
+            "id": 38348078343,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348078343",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:46:34Z"
+          },
+          {
+            "id": 38348025239,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348025239",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:45:55Z"
+          },
+          {
+            "id": 38348016148,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38348016148",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:45:48Z"
+          },
+          {
+            "id": 38347999089,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347999089",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:45:35Z"
+          },
+          {
+            "id": 38347979457,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347979457",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:45:21Z"
+          },
+          {
+            "id": 38347932049,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347932049",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:44:48Z"
+          },
+          {
+            "id": 38347895208,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347895208",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:44:20Z"
+          },
+          {
+            "id": 38347869208,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347869208",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:44:01Z"
+          },
+          {
+            "id": 38347853864,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347853864",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:43:49Z"
+          },
+          {
+            "id": 38347796175,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347796175",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:43:06Z"
+          },
+          {
+            "id": 38347711492,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347711492",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:42:03Z"
+          },
+          {
+            "id": 38347682210,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347682210",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:41:42Z"
+          },
+          {
+            "id": 38347653168,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347653168",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:41:20Z"
+          },
+          {
+            "id": 38347580275,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347580275",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:40:27Z"
+          },
+          {
+            "id": 38347572194,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347572194",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:40:21Z"
+          },
+          {
+            "id": 38347562370,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347562370",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:40:15Z"
+          },
+          {
+            "id": 38347536576,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347536576",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:39:57Z"
+          },
+          {
+            "id": 38347387683,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347387683",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:38:03Z"
+          },
+          {
+            "id": 38347370113,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347370113",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:37:50Z"
+          },
+          {
+            "id": 38347122210,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347122210",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:34:49Z"
+          },
+          {
+            "id": 38347038990,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347038990",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:33:47Z"
+          },
+          {
+            "id": 38347006779,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38347006779",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:33:23Z"
+          },
+          {
+            "id": 38346874713,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38346874713",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:31:43Z"
+          },
+          {
+            "id": 38346790682,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38346790682",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:30:42Z"
+          },
+          {
+            "id": 38346757210,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38346757210",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:30:21Z"
+          },
+          {
+            "id": 38345716428,
+            "name": "Skills Index Freshness Check",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38345716428",
+            "event": "schedule",
+            "created_at": "2026-10-13T04:17:20Z"
+          },
+          {
+            "id": 38344537049,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344537049",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:02:24Z"
+          },
+          {
+            "id": 38344514721,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344514721",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:02:07Z"
+          },
+          {
+            "id": 38344514633,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344514633",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:02:07Z"
+          },
+          {
+            "id": 38344504369,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344504369",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:02:00Z"
+          },
+          {
+            "id": 38344479733,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344479733",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:42Z"
+          },
+          {
+            "id": 38344479386,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344479386",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:41Z"
+          },
+          {
+            "id": 38344476162,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344476162",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:39Z"
+          },
+          {
+            "id": 38344475265,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344475265",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:38Z"
+          },
+          {
+            "id": 38344468018,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344468018",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:32Z"
+          },
+          {
+            "id": 38344468136,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344468136",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:32Z"
+          },
+          {
+            "id": 38344464094,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344464094",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:29Z"
+          },
+          {
+            "id": 38344463605,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344463605",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:29Z"
+          },
+          {
+            "id": 38344452142,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344452142",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:20Z"
+          },
+          {
+            "id": 38344432300,
+            "name": "Install & Update E2E red tracker",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38344432300",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T04:01:06Z"
+          },
+          {
+            "id": 38343484759,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38343484759",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:49:04Z"
+          },
+          {
+            "id": 38343468202,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38343468202",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:48:50Z"
+          },
+          {
+            "id": 38343344570,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38343344570",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:47:14Z"
+          },
+          {
+            "id": 38343325994,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38343325994",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:46:59Z"
+          },
+          {
+            "id": 38343120396,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38343120396",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:44:21Z"
+          },
+          {
+            "id": 38342919976,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342919976",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:41:44Z"
+          },
+          {
+            "id": 38342889686,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342889686",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:41:22Z"
+          },
+          {
+            "id": 38342848167,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342848167",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:40:51Z"
+          },
+          {
+            "id": 38342790401,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342790401",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:40:08Z"
+          },
+          {
+            "id": 38342761331,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342761331",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:39:47Z"
+          },
+          {
+            "id": 38342475287,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342475287",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:36:03Z"
+          },
+          {
+            "id": 38342458793,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38342458793",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:35:50Z"
+          },
+          {
+            "id": 38341876347,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341876347",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:28:32Z"
+          },
+          {
+            "id": 38341858873,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "cancelled",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341858873",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:28:19Z"
+          },
+          {
+            "id": 38341727468,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341727468",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:26:37Z"
+          },
+          {
+            "id": 38341703120,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341703120",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:26:18Z"
+          },
+          {
+            "id": 38341682738,
+            "name": "CI review comment",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341682738",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T03:26:02Z"
+          },
+          {
+            "id": 38341672394,
+            "name": "Docker Build, Test, and Publish",
+            "status": "pending",
+            "conclusion": null,
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341672394",
+            "event": "push",
+            "created_at": "2026-10-13T03:25:55Z"
+          },
+          {
+            "id": 38341672375,
+            "name": "Nix flake check",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341672375",
+            "event": "push",
+            "created_at": "2026-10-13T03:25:55Z"
+          },
+          {
+            "id": 38341673043,
+            "name": "CI",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "63d0b94120027d487c9a5235b9ec64b696af1b26",
+            "url": "https://github.com/NousResearch/hermes-agent/actions/runs/38341673043",
+            "event": "push",
+            "created_at": "2026-10-13T03:25:55Z"
+          }
+        ]
+      },
+      "releases": {
+        "name": "NousResearch/hermes-agent",
+        "kind": "releases",
+        "releases": [
+          {
+            "name": "Hermes Agent v0.21.7",
+            "tag_name": "v0.21.7",
+            "target_commitish": "71d34bad1045610252eda02ee79549436896e784",
+            "published_at": "2026-10-12T05:53:41Z",
+            "prerelease": false,
+            "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v0.21.7"
+          },
+          {
+            "name": "Hermes Agent v0.21.6",
+            "tag_name": "v0.21.6",
+            "target_commitish": "818c13be1dc4fd28987e1e881a9408224afd4535",
+            "published_at": "2026-10-08T11:51:57Z",
+            "prerelease": false,
+            "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v0.21.6"
+          },
+          {
+            "name": "Hermes Agent v0.21.5 (v2026.9.24)",
+            "tag_name": "v2026.9.24",
+            "target_commitish": "main",
+            "published_at": "2026-09-24T10:09:38Z",
+            "prerelease": false,
+            "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.9.24"
+          }
+        ]
+      }
+    },
+    {
+      "full_name": "morluto/rea",
+      "default_branch": "main",
+      "created_at": "2026-04-14T00:51:32Z",
+      "updated_at": "2026-10-13T05:11:15Z",
+      "pushed_at": "2026-10-13T05:10:55Z",
+      "stargazers_count": 169185,
+      "forks_count": 40262,
+      "open_issues_count": 412,
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "ci": {
+        "name": "morluto/rea",
+        "kind": "ci",
+        "total_count": 2,
+        "runs": [
+          {
+            "id": 38349348535,
+            "name": "CI",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "8b181716aca2cb467be499cba226abfb5ae19141",
+            "url": "https://github.com/morluto/rea/actions/runs/38349348535",
+            "event": "push",
+            "created_at": "2026-10-13T05:01:56Z"
+          },
+          {
+            "id": 38349348367,
+            "name": "Release",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "8b181716aca2cb467be499cba226abfb5ae19141",
+            "url": "https://github.com/morluto/rea/actions/runs/38349348367",
+            "event": "push",
+            "created_at": "2026-10-13T05:01:56Z"
+          }
+        ]
+      },
+      "releases": {
+        "name": "morluto/rea",
+        "kind": "releases",
+        "releases": [
+          {
+            "name": "rea-agents: v6.4.0",
+            "tag_name": "rea-agents-6.4.0",
+            "target_commitish": "a56f7bb668ab23fec8d33f7af353ac7ed2fe1895",
+            "published_at": "2026-10-11T03:58:03Z",
+            "prerelease": false,
+            "url": "https://github.com/morluto/rea/releases/tag/rea-agents-6.4.0"
+          },
+          {
+            "name": "rea-agents: v6.3.0",
+            "tag_name": "rea-agents-6.3.0",
+            "target_commitish": "74cf9e1401fcd89482fe39c27cc898f5858e9b72",
+            "published_at": "2026-10-09T23:56:42Z",
+            "prerelease": false,
+            "url": "https://github.com/morluto/rea/releases/tag/rea-agents-6.3.0"
+          },
+          {
+            "name": "rea-agents: v6.2.0",
+            "tag_name": "rea-agents-6.2.0",
+            "target_commitish": "a64851f2592cd353600d54864b38524705341dd1",
+            "published_at": "2026-10-09T16:51:14Z",
+            "prerelease": false,
+            "url": "https://github.com/morluto/rea/releases/tag/rea-agents-6.2.0"
+          }
+        ]
+      }
+    },
+    {
+      "full_name": "Anil-matcha/open-dots",
+      "default_branch": "main",
+      "created_at": "2023-05-25T14:21:12Z",
+      "updated_at": "2026-10-13T05:03:47Z",
+      "pushed_at": "2026-10-11T05:48:21Z",
+      "stargazers_count": 5737,
+      "forks_count": 691,
+      "open_issues_count": 4,
+      "archived": false,
+      "license": null,
+      "ci": {
+        "name": "Anil-matcha/open-dots",
+        "kind": "ci",
+        "total_count": 0,
+        "runs": []
+      },
+      "releases": {
+        "name": "Anil-matcha/open-dots",
+        "kind": "releases",
+        "releases": []
+      }
+    },
+    {
+      "full_name": "Merit-Systems/OpenInstinct",
+      "default_branch": "main",
+      "created_at": "2026-08-25T14:42:47Z",
+      "updated_at": "2026-10-13T04:43:27Z",
+      "pushed_at": "2026-10-05T22:20:52Z",
+      "stargazers_count": 447,
+      "forks_count": 78,
+      "open_issues_count": 25,
+      "archived": false,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "ci": {
+        "name": "Merit-Systems/OpenInstinct",
+        "kind": "ci",
+        "total_count": 1,
+        "runs": [
+          {
+            "id": 37373152011,
+            "name": "Checks",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "0c2a7c6e842fa7105cee004b2d6ac1d5f1c7c1e8",
+            "url": "https://github.com/Merit-Systems/OpenInstinct/actions/runs/37373152011",
+            "event": "push",
+            "created_at": "2026-10-05T20:59:49Z"
+          }
+        ]
+      },
+      "releases": {
+        "name": "Merit-Systems/OpenInstinct",
+        "kind": "releases",
+        "releases": []
+      }
+    },
+    {
+      "full_name": "elie222/rakazo",
+      "default_branch": "main",
+      "created_at": "2026-08-13T06:28:56Z",
+      "updated_at": "2026-10-13T05:16:16Z",
+      "pushed_at": "2026-10-13T05:16:11Z",
+      "stargazers_count": 3822,
+      "forks_count": 662,
+      "open_issues_count": 36,
+      "archived": false,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "ci": {
+        "name": "elie222/rakazo",
+        "kind": "ci",
+        "total_count": 4,
+        "runs": [
+          {
+            "id": 38351012176,
+            "name": "publish Playwright report",
+            "status": "completed",
+            "conclusion": "failure",
+            "head_sha": "0394e92c820994ec9978b046f652c3ab4ca85fa5",
+            "url": "https://github.com/elie222/rakazo/actions/runs/38351012176",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T05:22:00Z"
+          },
+          {
+            "id": 38350909168,
+            "name": "publish Playwright report",
+            "status": "completed",
+            "conclusion": "skipped",
+            "head_sha": "0394e92c820994ec9978b046f652c3ab4ca85fa5",
+            "url": "https://github.com/elie222/rakazo/actions/runs/38350909168",
+            "event": "workflow_run",
+            "created_at": "2026-10-13T05:20:46Z"
+          },
+          {
+            "id": 38350533751,
+            "name": "ci",
+            "status": "in_progress",
+            "conclusion": null,
+            "head_sha": "0394e92c820994ec9978b046f652c3ab4ca85fa5",
+            "url": "https://github.com/elie222/rakazo/actions/runs/38350533751",
+            "event": "push",
+            "created_at": "2026-10-13T05:16:14Z"
+          },
+          {
+            "id": 38350533365,
+            "name": "publish-server-image",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "0394e92c820994ec9978b046f652c3ab4ca85fa5",
+            "url": "https://github.com/elie222/rakazo/actions/runs/38350533365",
+            "event": "push",
+            "created_at": "2026-10-13T05:16:14Z"
+          }
+        ]
+      },
+      "releases": {
+        "name": "elie222/rakazo",
+        "kind": "releases",
+        "releases": [
+          {
+            "name": "Rakazo v0.2.0",
+            "tag_name": "v0.2.0",
+            "target_commitish": "main",
+            "published_at": "2026-10-10T22:46:38Z",
+            "prerelease": false,
+            "url": "https://github.com/elie222/rakazo/releases/tag/v0.2.0"
+          },
+          {
+            "name": "Rakazo for Android 1.0.5 (16)",
+            "tag_name": "android",
+            "target_commitish": "08417191633c14d924cf3cd4b272e1b8bffe882f",
+            "published_at": "2026-10-10T22:04:11Z",
+            "prerelease": false,
+            "url": "https://github.com/elie222/rakazo/releases/tag/android"
+          },
+          {
+            "name": "Rakazo v0.1.6",
+            "tag_name": "v0.1.6",
+            "target_commitish": "main",
+            "published_at": "2026-09-08T05:47:07Z",
+            "prerelease": false,
+            "url": "https://github.com/elie222/rakazo/releases/tag/v0.1.6"
+          }
+        ]
+      },
+      "retrievedAt": "2026-10-13T05:26:25.525Z"
+    }
+  ],
+  "rakazoRetrievedAt": "2026-10-13T05:26:25.525Z"
+}

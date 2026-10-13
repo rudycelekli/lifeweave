@@ -1,0 +1,12 @@
+{
+  "name": "@lifeweave/planner",
+  "version": "0.1.0-alpha.1",
+  "type": "module",
+  "description": "Host-owned, review-only model presentation proposals grounded in LifeWeave policy",
+  "exports": { ".": { "types": "./src/index.d.ts", "import": "./src/index.mjs" } },
+  "files": ["src", "README.md", "LICENSE"],
+  "dependencies": { "@lifeweave/core": "0.1.0-alpha.1" },
+  "engines": { "node": ">=22" },
+  "license": "Apache-2.0",
+  "scripts": { "test": "node --test ../../tests/planner.test.mjs", "verify": "node scripts/verify.mjs" }
+}

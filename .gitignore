@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.private/
+.claude-flow/
+.claude/
+.swarm/
+.env*
+!.env.example
