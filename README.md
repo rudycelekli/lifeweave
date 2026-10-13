@@ -48,7 +48,8 @@ document.querySelector('main').append(renderSurface(surfaces[0]));
 ```
 
 Import the UI stylesheet into your host. Use a bundler/package resolver or the console's import map. Packages are included in this source release; an npm registry publication is not claimed. `node scripts/package.mjs
-node scripts/verify-packed.mjs` creates clean source and package archives with a manifest, using an explicit allowlist.
+node scripts/verify-packed.mjs
+node scripts/verify-packed-negative.mjs` creates clean source and package archives with a manifest, using an explicit allowlist.
 
 The dashboard stays quiet until useful evidence arrives. **Ask for a different view** opens a compact optional request control for the selected suggestion. It previews the result, requires you to review the wording, and checks current evidence again before you choose **Use this view**. Requested views are temporary; fresh state, another workspace or expiration restores the rule-driven original. No model is called by the worker.
 

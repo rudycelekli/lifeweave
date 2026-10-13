@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "at": "2026-10-13T10:34:58.760Z",
+  "at": "2026-10-13T10:42:38.738Z",
   "status": "passed",
   "runtime": {
     "node": "v24.19.0",
@@ -304,8 +304,12 @@
       "sha256": "daf7ec37eda3f4cc5e277b8cafb9cca419deb824791e5bc8050dd7da592c2811"
     },
     {
+      "file": "scripts/verify-packed-negative.mjs",
+      "sha256": "f073a25b073bed02fccc66d3dab29af61d95d95ebaa364ae850e4d4069549b9f"
+    },
+    {
       "file": "scripts/verify-packed.mjs",
-      "sha256": "08d1d0c852a47a1d9e86b31a54e35d6a039e70c3c3418c8e87f9b3757284fe46"
+      "sha256": "08fe9d16980e1415a07cb903bf13e7d2878b6f32d3c244c6400bbb0e7e9189f4"
     },
     {
       "file": "scripts/verify.mjs",

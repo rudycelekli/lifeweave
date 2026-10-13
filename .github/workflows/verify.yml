@@ -21,3 +21,4 @@ jobs:
       - run: node scripts/verify.mjs
       - run: node scripts/package.mjs
       - run: node scripts/verify-packed.mjs
+      - run: node scripts/verify-packed-negative.mjs
