@@ -56,7 +56,7 @@ const compareVersion = (a, b) => {
 const minimumMacOS = compareVersion(runtimeMinimum, '13.0') > 0 ? runtimeMinimum : '13.0';
 
 // Exact allowlist: code/UI trees and one public research artifact. Never copy the repository root.
-const PUBLIC_WEB_FILES = ['apps/web/server.mjs', 'apps/web/host-model.mjs', 'apps/web/request-panel.mjs', 'apps/web/index.html', 'apps/web/app.mjs',
+const PUBLIC_WEB_FILES = ['apps/web/server.mjs', 'apps/web/host-model.mjs', 'apps/web/request-panel.mjs', 'apps/web/workspace-tools.mjs', 'apps/web/index.html', 'apps/web/app.mjs',
   'apps/web/app.css', 'apps/web/icon.svg', 'apps/web/manifest.json', 'apps/web/sw.js'];
 const PUBLIC_PACKAGES = ['packages/core', 'packages/ui', 'packages/connectors', 'packages/planner'];
 const PUBLIC_TREES = PUBLIC_PACKAGES.map(name => `${name}/src`);

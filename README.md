@@ -6,7 +6,11 @@ A local, proactive intelligent UI toolkit for the goals you choose.
 
 LifeWeave connects goals to consented evidence and turns useful moments into working interfaces: a focus planner, an overdue-commitment review, a sleep reflection, a relationship reminder, or a measured-result check-in. It opens to a dashboard, with the evidence and controls needed for a next move. No prompt is required for the rule-driven baseline.
 
-**Status: 0.1.0-alpha.2.** The local engine, console, portable packages, optional requested model views and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, general model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
+**Status: 0.1.0-alpha.3.** The local engine, console, portable packages, optional requested model views and macOS shell are implemented. Synthetic replay, policy tests, provider/model mocks, DOM/React tests and type checks validate software mechanisms. Live OAuth/account acceptance, general model quality, mobile delivery, multi-user enterprise operation and improved personal outcomes remain unverified or unimplemented. “World's best” is an ambition, not a measured result.
+
+## Shared context and outcomes
+
+**Shared Context** connects active goals, eligible sources and explicit people/projects. Missing facts get a single reviewable question; user confirmations remain separate from original evidence. **What would help right now?** builds a bounded focus view from a confirmed window without a model call. **Outcomes** separates drafts, user reports and later measurements, with comparable deltas and causal attribution unknown. Source revocation removes dependent records. See the [behavior and evaluation contract](docs/CONTEXT-AND-OUTCOMES.md).
 
 ## Run locally
 
@@ -43,7 +47,8 @@ const { surfaces } = evaluate(state, {
 document.querySelector('main').append(renderSurface(surfaces[0]));
 ```
 
-Import the UI stylesheet into your host. Use a bundler/package resolver or the console's import map. Packages are included in this source release; an npm registry publication is not claimed. `node scripts/package.mjs` creates clean source and package archives with a manifest, using an explicit allowlist.
+Import the UI stylesheet into your host. Use a bundler/package resolver or the console's import map. Packages are included in this source release; an npm registry publication is not claimed. `node scripts/package.mjs
+node scripts/verify-packed.mjs` creates clean source and package archives with a manifest, using an explicit allowlist.
 
 The dashboard stays quiet until useful evidence arrives. **Ask for a different view** opens a compact optional request control for the selected suggestion. It previews the result, requires you to review the wording, and checks current evidence again before you choose **Use this view**. Requested views are temporary; fresh state, another workspace or expiration restores the rule-driven original. No model is called by the worker.
 

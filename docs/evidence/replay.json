@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "at": "2026-10-13T08:15:02.636Z",
+  "at": "2026-10-13T10:34:58.736Z",
   "fixture": "synthetic-only",
   "clock": "2026-10-13T16:00:00.000Z",
   "status": "passed",
@@ -17,8 +17,8 @@
   ],
   "latency": {
     "repetitions": 200,
-    "p50Ms": 0.47587500000000205,
-    "p95Ms": 0.6906659999999931
+    "p50Ms": 0.727249999999998,
+    "p95Ms": 4.740791999999999
   },
   "modelCalls": 0,
   "externalActions": 0,

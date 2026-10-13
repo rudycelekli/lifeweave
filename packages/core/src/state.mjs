@@ -2,6 +2,7 @@ import { goalIssues } from './goal-system/domain/goal.mjs';
 import { observationIssues } from './observations/domain/observation.mjs';
 import { finiteNumber, isDate, isId, isRecord, isText, jsonIssues } from './shared/validation.mjs';
 import { validTimezone } from './shared/time.mjs';
+import { extensionIssues } from './shared-context/domain/extensions.mjs';
 
 export function validateState(state) {
   const issues = jsonIssues(state);
@@ -68,5 +69,7 @@ export function validateState(state) {
       if (!isRecord(receipt) || !isId(receipt.surfaceId) || !isDate(receipt.at) || receipt.tenantId !== state.tenantId) issues.push(`deliveries[${i}]: surfaceId, at, and current tenantId required`);
     });
   }
+  if(issues.length)return {valid:false,issues};
+  issues.push(...extensionIssues(state));
   return { valid: issues.length === 0, issues };
 }

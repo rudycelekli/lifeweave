@@ -5,6 +5,7 @@ import { OBSERVATION_POLICIES } from '../../action-policy/domain/capabilities.mj
 import { observationDecision } from '../../action-policy/application/evaluate-consent.mjs';
 import { observationFingerprint } from '../../observations/domain/observation.mjs';
 import { validateSurface } from '../domain/surface.mjs';
+import { projectContextCorrections } from '../../shared-context/application/corrections.mjs';
 
 export const RULES = Object.freeze([
   { id: 'overdue-commitment', kind: 'mail.commitment', description: 'An explicitly structured, incomplete commitment is overdue.' },
@@ -47,7 +48,7 @@ export function buildCandidates(state, now) {
     const fingerprint = observationFingerprint(observation);
     if (fingerprints.has(fingerprint)) { suppressed.push({ id: observation.id, evidenceRefs: [observation.id], reason: 'duplicate-observation' }); continue; }
     fingerprints.add(fingerprint);
-    eligible.push(observation);
+    eligible.push(projectContextCorrections(state,observation,now));
     if (['mail.message', 'calendar.event'].includes(observation.kind)) suppressed.push({ id: observation.id, evidenceRefs: [observation.id], reason: 'unconfirmed-signal' });
   }
   const candidates = [];

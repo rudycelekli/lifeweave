@@ -1,13 +1,99 @@
 {
   "version": 1,
   "observedDate": "2026-10-13",
-  "skillsApplied": ["ruflo-adr:adr-create", "ruflo-ddd:ddd-context", "ruflo-goals:deep-research", "ruflo-swarm:swarm-init", "pdf:pdf", "documents:documents", "impeccable", "ruvnet-brain:ruvnet-brain"],
+  "skillsApplied": [
+    "ruflo-adr:adr-create",
+    "ruflo-ddd:ddd-context",
+    "ruflo-goals:deep-research",
+    "ruflo-swarm:swarm-init",
+    "pdf:pdf",
+    "documents:documents",
+    "impeccable",
+    "ruvnet-brain:ruvnet-brain",
+    "ruflo-metaharness:harness-genome"
+  ],
   "execution": "Native subscription agents executed bounded owned tasks. Ruflo CLI initialization is separate coordination-state evidence, not proof it executed those agents.",
-  "ruflo": {"version":"3.56.9","registryVerified":true,"swarmInit":"passed","swarmId":"swarm-1791870525424-lz159l","topology":"hierarchical","maxAgents":4,"providerBackedAgentsExecuted":false},
-  "projectMemory": {"backend":"AgentDB schema via sql.js fallback","initializationChecks":"6/6 passed","controllerInitialization":{"activated":16,"failed":7},"durableWrite":"failed","exactAdrReadback":false,"reason":"sql.js fallback rejects wal_checkpoint(passive); CLI reported persistence not guaranteed and retrieve found no ADR value.","canonicalFallback":"docs/adr files and source-hashed verification artifacts","hierarchicalGraphRegistration":false,"researchReportStored":false},
-  "gaps": ["Ruflo core/hierarchical graph MCP tools not exposed", "Ruflo AI-team connector required authentication", "AIDefence MCP not exposed; research screened=false", "search_ruvnet MCP not exposed; public primary repositories used as fallback", "Agentic QE runtime not exposed; native Node, browser, type, mock and policy tests used", "MetaHarness runtime not integrated"],
-  "metaharnessRegistryVersion":"0.10.3",
-  "research": {"capUsd":2,"spentUsd":null,"depth":"deep","status":"done","screened":false,"remoteStorage":false},
-  "learningClaims": {"retrievalIsTraining":false,"modelTrainingPerformed":false,"semanticIndexUsedForAppState":false},
-  "note":"Tools and stack adoption are justified by observed interfaces. Initialization and source references do not establish production maturity."
+  "ruflo": {
+    "version": "3.56.9",
+    "registryVerified": true,
+    "swarmInit": "passed",
+    "swarmId": "swarm-1791870525424-lz159l",
+    "topology": "hierarchical",
+    "maxAgents": 4,
+    "providerBackedAgentsExecuted": false
+  },
+  "projectMemory": {
+    "backend": "AgentDB schema via sql.js fallback",
+    "initializationChecks": "6/6 passed",
+    "controllerInitialization": {
+      "activated": 16,
+      "failed": 7
+    },
+    "durableWrite": "failed",
+    "exactAdrReadback": false,
+    "reason": "sql.js fallback rejects wal_checkpoint(passive); CLI reported persistence not guaranteed and retrieve found no ADR value.",
+    "canonicalFallback": "docs/adr files and source-hashed verification artifacts",
+    "hierarchicalGraphRegistration": false,
+    "researchReportStored": false
+  },
+  "gaps": [
+    "Ruflo core/hierarchical graph MCP tools not exposed",
+    "Ruflo AI-team connector required authentication",
+    "AIDefence MCP not exposed; research screened=false",
+    "search_ruvnet MCP not exposed; public primary repositories used as fallback",
+    "Agentic QE runtime not exposed; native Node, browser, type, mock and policy tests used"
+  ],
+  "metaharnessRegistryVersion": "0.10.3",
+  "research": {
+    "capUsd": 2,
+    "spentUsd": null,
+    "depth": "deep",
+    "status": "done",
+    "screened": false,
+    "remoteStorage": false
+  },
+  "learningClaims": {
+    "retrievalIsTraining": false,
+    "modelTrainingPerformed": false,
+    "semanticIndexUsedForAppState": false
+  },
+  "note": "Tools and stack adoption are justified by observed interfaces. Initialization and source references do not establish production maturity.",
+  "metaharness": {
+    "kind": "static-genome-heuristic",
+    "repoType": "node_ci",
+    "riskScore": 0.235,
+    "testConfidence": 0.8,
+    "publishReadiness": 0.7,
+    "baselineExitCode": 1,
+    "status": "needs-work",
+    "providerCalls": 0,
+    "limits": "Heuristic readiness classification, not executed evaluation or proof of product quality.",
+    "installedPackageVersion": "0.4.2",
+    "versionFlagSupported": false
+  },
+  "coordinationTasks": [
+    {
+      "id": "task-1791885838632-2hfvo6",
+      "owner": "native core_builder",
+      "status": "native-execution-complete",
+      "rufloStatus": "pending-unassigned"
+    },
+    {
+      "id": "task-1791885839129-ftyiew",
+      "owner": "native repository_research",
+      "status": "native-execution-complete",
+      "rufloStatus": "pending-unassigned"
+    },
+    {
+      "id": "task-1791885839609-1vtqhe",
+      "owner": "native personal_model",
+      "status": "native-review-complete",
+      "rufloStatus": "pending-unassigned"
+    }
+  ],
+  "releaseProtocol": {
+    "scope": "LifeWeave alpha source/package release",
+    "brainPluginSealApplied": false,
+    "reason": "Brain/RVF/plugin-host registry release contract does not describe this independent application. Exact revision CI, immutable archive digest checks, clean temporary SDK/host checks and post-publication byte comparison are used."
+  }
 }

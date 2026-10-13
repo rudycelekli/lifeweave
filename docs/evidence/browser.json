@@ -1,28 +1,23 @@
 {
   "version": 1,
-  "at": "2026-10-13T08:12:24.625Z",
+  "at": "2026-10-13T10:31:08.597Z",
+  "release": "0.1.0-alpha.3",
   "status": "passed",
   "source": "Codex in-app browser actual UI interactions",
   "fixture": "synthetic-only",
   "checks": [
-    "Four proactive surfaces rendered",
-    "Scenario25 to40 produced35 to20 remaining minutes",
-    "Plan editor preserved40 selected minutes",
-    "Saved local40-minute draft displayed as draft only",
-    "Snooze removed one surface then synthetic reset restored four",
-    "Created custom goal/key result",
-    "Explicitly allowed local synthetic evidence",
-    "Recorded15 against60 target produced fifth goal-linked surface",
-    "Rapid personal to business switch showed empty business state",
-    "Desktop1440px no document overflow",
-    "Mobile390px no document overflow",
-    "Optional request control starts collapsed and unconfigured",
-    "Unsaved goal editor clears on workspace switch",
-    "Injected model fixture preview leaves original canvas intact",
-    "Explicit Use this view fresh-revalidates and temporarily applies layout",
-    "Requested layout calculator40 retained20 remaining and40 in draft form",
-    "Restore original removed requested layout",
-    "Two-host cookie collision found in browser and fixed with isolated-port regression"
+    "Compact focus request starts collapsed",
+    "Unsupported2h asks exact minute choice",
+    "30minute preview requires fresh review before applying",
+    "Available calendar metric unchanged by request constraint",
+    "Constrained draft editor retained30minute max/value",
+    "Saved local draft appears in Outcomes",
+    "Useful20minute user report produced1report and0measurements",
+    "Explicit project associated with selectedgoal",
+    "Personal and business outcome pages remainempty",
+    "SharedContext390px no documentoverflow",
+    "Outcomes390px and1440px no documentoverflow",
+    "Latest source reloaded and dashboard screenshot retained"
   ],
   "viewports": [
     {
@@ -36,23 +31,21 @@
   ],
   "screenshot": {
     "file": "docs/assets/workspace.jpg",
-    "sha256": "b62a3bd8f5c42d8d96dc1a3e0e6dd5793f72058658b4909e5c95879de926bd9c",
+    "sha256": "b4489afbd8dc45a358f3f3a4526553cba56b2b19572864fe571184088e0daa6f",
     "publicSyntheticOnly": true
   },
   "liveAccountActions": 0,
   "externalActions": 0,
-  "limits": "This is local UI acceptance on synthetic data, not live integration acceptance or longitudinal utility.",
-  "release": "0.1.0-alpha.2",
-  "modelFixture": {
-    "kind": "injected-synthetic-response",
-    "explicitRequests": 1,
-    "realModelCalls": 0,
-    "appliedOnlyAfterReview": true
-  },
+  "realModelCalls": 0,
+  "limits": "Synthetic local browser acceptance; no live connection or longitudinal outcome proof.",
   "sourceHashes": [
     {
       "file": "apps/web/app.mjs",
-      "sha256": "9438a7dd44b9c50e2f776d18dcf28b4a0a03a872bc0235f8b6e2388bd6385646"
+      "sha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
+    },
+    {
+      "file": "apps/web/workspace-tools.mjs",
+      "sha256": "2887645211fc0d0a48ae124f07c1626c5ddf1d0e1f5b848c0862f571ab808afd"
     },
     {
       "file": "apps/web/request-panel.mjs",
@@ -60,7 +53,7 @@
     },
     {
       "file": "apps/web/server.mjs",
-      "sha256": "e0f8da22383ae9cf3cbb9b4b498c4672964bfebcdee0b45ba04c065274d9177d"
+      "sha256": "bbbcc9c07f341a39be43ea4448798147e6af908e1610ef5f1826d5a87add0748"
     }
   ]
 }

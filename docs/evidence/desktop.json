@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-13T08:12:24.625Z",
+  "verifiedAt": "2026-10-13T10:31:08.509Z",
   "status": "local-qa-verified",
   "platform": "macos",
   "architecture": "arm64",
   "minimumMacOS": "13.5",
   "artifact": {
     "relativePath": "dist/desktop/Lifeweave.app",
-    "treeSha256": "65575b14b90bde8f029df2f590cc70b2be36cc07fef1639f4bcc45ee06cb4602",
+    "treeSha256": "e220d21f66e6666bff6913f8386213e27cf95bd6fd00ba6d2a406ffaed286365",
     "treeHashMethod": "SHA256 of sorted UTF-8 tab-separated relative file path and file SHA256 records, or relative symlink target records; each record ends in newline.",
-    "nativeExecutableSha256": "d8b1ffcb7c45dce9b7c46c086a53fbd7272a33d9a26282a470b759af2457e5eb",
+    "nativeExecutableSha256": "b66cbd423c874d7c8e0ae17c650c1f79d8e5a63acbb686ea5dd575abba2220bb",
     "infoPlistSha256": "5316f844f1eac91d846154bfc277ae7ab879c874f2619381211c95b02e8c1048",
-    "bundleManifestSha256": "528405834e89b9a1bfcb0f4edc286583635f38404529aab2a9eba7a054aa409a",
-    "codeResourcesSha256": "ef3603c76cad350a8f40901e3cf1b81023f5817df6602da7411248adbe54cfa8",
+    "bundleManifestSha256": "c65bfc860ed89fafff23ada5bb18472983d1a88036941dc464894abbaf12d1b8",
+    "codeResourcesSha256": "27c6f2c14886e4461cecc80785a782c222e96ddd518bc7a1520f7d91d23fdf4a",
     "nodeSha256": "b49e3d4673bd14b343ff17111df6696e3961701bf36ed981f878e57e24f559ba",
     "nodeSourceSha256": "743cbaf12bd9323937b85f6297d8182b086526510c9f9c5875fa74d2aad9072d",
     "nodeLicenseSha256": "148eacf7863ef4329224a29398623077200a27194aa075569faf4a0a85566ca5",
     "sourceShellSha256": "40fa4498a6221f8599f945dcaf16ea7ae1b9f5a353ed3a513b85c6af6639e53b",
-    "sourceBuilderSha256": "9613f02f111ba2c1cdb87cc6c766dc5884db2dcb1eddc8b711e89c35283ecb1f",
-    "webAppSourceSha256": "9438a7dd44b9c50e2f776d18dcf28b4a0a03a872bc0235f8b6e2388bd6385646"
+    "sourceBuilderSha256": "4c75fea09583915e9c1afbbb54f6ca2b86293ca6cfefcaa47066977a202c8a8f",
+    "webAppSourceSha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
   },
   "runtime": {
     "source": "supplied-workspace-runtime",
@@ -37,11 +37,11 @@
     "appStoreAccepted": false
   },
   "packaging": {
-    "publicSourceFiles": 53,
-    "bundleFileCount": 59,
+    "publicSourceFiles": 59,
+    "bundleFileCount": 65,
     "resourceHashesMatch": true,
     "frozenSourceHashesMatch": true,
-    "finiteWebAssets": 9,
+    "finiteWebAssets": 10,
     "packageCopy": "src, package.json, README.md, optional LICENSE",
     "generatedInternalCoreLinkVerified": true,
     "privateDirectoriesIncluded": false,
@@ -90,5 +90,6 @@
     "Native smoke checks rendered controls and compiled rules; full visual/accessibility and adversarial resource-blocking tests are separate.",
     "Live provider connections, hosted sync, paid capabilities and multi-tenant business operations require separate integration acceptance."
   ],
-  "distributionReady": false
+  "distributionReady": false,
+  "release": "0.1.0-alpha.3"
 }

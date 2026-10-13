@@ -58,7 +58,7 @@ Replay mode bypasses quiet hours, delivery history, and budget only. It still en
 
 ## Domain boundaries and verification
 
-The source uses goal-system, observations, action-policy, and proactive-planning bounded contexts. Domain objects and application services are concrete modules; no empty scaffold placeholders were added. No AgentDB/registry MCP was available in this session; local state files and repository ADRs are the documented fallback, and no remote registration is claimed.
+The source uses goal-system, observations, action-policy, proactive-planning, shared-context, intent-planning and outcome-ledger bounded contexts. Domain objects and application services are concrete modules; no empty scaffold placeholders were added. No AgentDB/registry MCP was available in this session; local state files and repository ADRs are the documented fallback, and no remote registration is claimed.
 
 Run meaningful replay and adversarial tests from the package directory:
 
@@ -67,6 +67,18 @@ node --test ../../tests/core*.test.mjs
 node scripts/verify.mjs
 ```
 
-The verification command saves a TAP transcript and a JSON receipt with source SHA-256 hashes in this package directory. Those hashes identify local tested artifacts; they do not establish truth or live acceptance. An independent audit checks active-goal, tenant, scope, freshness, consent-expiration, and budget invariants across 64 intervention states. Type declarations are included; a TypeScript compiler was unavailable during this run.
+The verification command saves a TAP transcript and a JSON receipt with source SHA-256 hashes in this package directory. Those hashes identify local tested artifacts; they do not establish truth or live acceptance. An independent audit checks active-goal, tenant, scope, freshness, consent-expiration, and budget invariants across 64 intervention states. Type declarations are included and the workspace verification runs the installed TypeScript compiler.
 
 The demo fixture is entirely synthetic, including historical goal material. All live catalog entries default to disconnected. `CONNECTOR_CATALOG` distinguishes actual local JSON normalization contracts from live OAuth/desktop integrations that require a host adapter and configuration. Live integrations and user outcomes require their own end-to-end validation.
+
+## Shared context and outcome evidence
+
+`buildSharedContext(state,{now})` projects active goals, eligible evidence, explicit people/projects and latest typed measurements. `upsertContextEntity` returns an immutable state with a bounded same-tenant entity. Similar labels do not merge. Optional `data.entityIds` links source observations to known identities.
+
+`compileIntent(state,{request,goalId?,minutes?,answer?},{now})` supports a small English focus grammar. It returns `ready`, `needs-clarification`, or `unavailable`; current confirmed calendar evidence bounds any ready scenario. Continue a question with its exact `{questionId,value}` choice. If a goal answer leads to a duration question, carry the returned goal ID. Hosts must retain the original input and fresh-revalidate before using an expiring preview. No model or external tool is called.
+
+`detectContextGaps(state,{}, {now})` enumerates missing consent/source/typed measurement or commitment facts. `resolveContextGap` returns an inert typed proposal. After explicit user confirmation, the host can call `recordContextCorrection`; it adds a source-revision-bound annotation and preserves raw source data. `effectiveObservation` exposes the eligible projected view. Confirmation cannot invent metrics, grant scopes, or activate goals.
+
+`capturePlanBaseline` records a current typed measurement if available. `recordPlanOutcome` saves a bounded user report for an evidence-grounded local draft without mutating measurements. `buildOutcomeLedger` separates drafts, reports, actual later measurement links and comparable deltas. Comparisons require identical declared metric key/unit/direction/target; attribution is always `not-established`. `pruneContextData` removes source-dependent extensions after revocation, retaining independently authored entities. The host remains responsible for removing source bodies and atomically persisting the pruned state.
+
+All extension APIs and receipt shapes have public types in `src/index.d.ts`. The workspace verification runs tests, TypeScript and frozen synthetic replay. These mechanisms do not establish real source accuracy or improved personal outcomes.

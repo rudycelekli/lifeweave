@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "at": "2026-10-13T08:15:02.652Z",
+  "at": "2026-10-13T10:34:58.760Z",
   "status": "passed",
   "runtime": {
     "node": "v24.19.0",
@@ -21,11 +21,11 @@
       "exitCode": 0
     }
   },
-  "tests": 89,
+  "tests": 146,
   "sourceHashes": [
     {
       "file": "packages/connectors/package.json",
-      "sha256": "1f93982184c447d820a76645095fd388049d89d03857124c19dc33af3138d204"
+      "sha256": "165ac5fce2e0fe99dbcafeb24c6aa82a283d12d98a212c1f7aa96ac25845d5f4"
     },
     {
       "file": "packages/connectors/src/index.d.ts",
@@ -37,7 +37,7 @@
     },
     {
       "file": "packages/core/package.json",
-      "sha256": "ee5e495187dcaec5cf38bb4bb4be6ebeb2d049b4e5acbcdded37065f24bc28a8"
+      "sha256": "d762e96a3b5036f1dce6394cf023cbdda77dbf872bc0fb34c5c6757d44ab7081"
     },
     {
       "file": "packages/core/scripts/verify.mjs",
@@ -69,11 +69,15 @@
     },
     {
       "file": "packages/core/src/index.d.ts",
-      "sha256": "4376b09118e586c84da9f73360aabebf33be92c1ced48baedb1eb9f0af7e0533"
+      "sha256": "21e804f70f121ea3e3ae6aa26b62ce74c7fcdbc6587e0099e362ba389a7afa4b"
     },
     {
       "file": "packages/core/src/index.mjs",
-      "sha256": "155614737277f51b4b395ea1a6ff6d9b1114e261b1b85a914c34284339c2e46a"
+      "sha256": "38781bd3e102dada34cd4b2a1927281fca75a8c9e6ff17d4008098a55eb47873"
+    },
+    {
+      "file": "packages/core/src/intent-planning/index.mjs",
+      "sha256": "9b9c6eace5801a85e80bf86e58d313c928cbdaa0c67eea2f58aeede66674337c"
     },
     {
       "file": "packages/core/src/observations/application/ingest.mjs",
@@ -88,8 +92,12 @@
       "sha256": "477709f43a456b683e4e6a173a860dee0ca89dc5ddb193dc0f9869b8565a2f8b"
     },
     {
+      "file": "packages/core/src/outcome-ledger/application/ledger.mjs",
+      "sha256": "1e807e8467dfc5b2b244a92911e69f9bbb05d51d38c960f053b46361d2dd6ab8"
+    },
+    {
       "file": "packages/core/src/proactive-planning/application/evaluate.mjs",
-      "sha256": "4e51e75e0ee5fd189742abb172b807881607a6c2b5c784ed4a9e3cb549e78970"
+      "sha256": "c20f4c26d4671fe1cf753fb20e4bb85021a10aa2a411a1a1078da8489385fd50"
     },
     {
       "file": "packages/core/src/proactive-planning/application/feedback.mjs",
@@ -116,8 +124,20 @@
       "sha256": "4a6dccc5a83a21b656400375c3deaef745f8181b39608417813c861416135ca4"
     },
     {
+      "file": "packages/core/src/shared-context/application/context.mjs",
+      "sha256": "ff200a5d9a88179e5106943ca5b3f8f64fb6a96ada1e01a92c311f0d8bfad765"
+    },
+    {
+      "file": "packages/core/src/shared-context/application/corrections.mjs",
+      "sha256": "08ef0d6aafbbac107640a2af072a9ba315a2e539c63ec27d950c316aa60575a4"
+    },
+    {
+      "file": "packages/core/src/shared-context/domain/extensions.mjs",
+      "sha256": "c50ea309a98fc5b8d057cf9123a8183a01b6b3c705a0c2361e669add88e113f0"
+    },
+    {
       "file": "packages/core/src/state.mjs",
-      "sha256": "956d932e38b97a86188ae1d463de3b61021d1dffc7dc18c181ca40d4576b9737"
+      "sha256": "ecf1038d874558f474ac2710dc07d5c3fee2d37b4c0494cdb2f56e29ef30ac83"
     },
     {
       "file": "packages/planner/console-verification.json",
@@ -125,7 +145,7 @@
     },
     {
       "file": "packages/planner/package.json",
-      "sha256": "e22e73d4b8f98f54d91d7b9b04b8eaad2cb3c7257a3c1c6731e30c9d6e7df66e"
+      "sha256": "3bd82424e0be55dbdc3058793eb1fa85581412a800d67f7b9812d12342f895ae"
     },
     {
       "file": "packages/planner/scripts/verify.mjs",
@@ -141,7 +161,7 @@
     },
     {
       "file": "packages/ui/package.json",
-      "sha256": "3c2723a01632f01061ae9da9ca6f496f615017421ca7126798a7059e86924eb9"
+      "sha256": "867b546736a377601c685b00b88d6acb6dee26089b2c42fa5453970f0a44e201"
     },
     {
       "file": "packages/ui/src/index.d.ts",
@@ -169,11 +189,11 @@
     },
     {
       "file": "apps/web/app.css",
-      "sha256": "8fc0cb2ea100ad4a211da452968da514e3eb0a5d148ca1fb8d533521bb853c84"
+      "sha256": "ad2a9cb7d0a1644133425aae4695e3ffe25599273d3c0e0091325fabfee35fa5"
     },
     {
       "file": "apps/web/app.mjs",
-      "sha256": "9438a7dd44b9c50e2f776d18dcf28b4a0a03a872bc0235f8b6e2388bd6385646"
+      "sha256": "09a22e9d18ecd9f748b01153f08169fd4df7cc0ac1d44bdae478bccaaea393f2"
     },
     {
       "file": "apps/web/host-model.mjs",
@@ -193,7 +213,15 @@
     },
     {
       "file": "apps/web/server.mjs",
-      "sha256": "e0f8da22383ae9cf3cbb9b4b498c4672964bfebcdee0b45ba04c065274d9177d"
+      "sha256": "bbbcc9c07f341a39be43ea4448798147e6af908e1610ef5f1826d5a87add0748"
+    },
+    {
+      "file": "apps/web/workspace-tools.mjs",
+      "sha256": "2887645211fc0d0a48ae124f07c1626c5ddf1d0e1f5b848c0862f571ab808afd"
+    },
+    {
+      "file": "tests/app-lifecycle.test.mjs",
+      "sha256": "3a141cb8de3b25b694e9b88f91c4e7505b7f3fdff90304d00ddb0024c01a9ae6"
     },
     {
       "file": "tests/connectors.test.mjs",
@@ -204,12 +232,20 @@
       "sha256": "5abbe1c82ff78ce36d411a86ca791ddff1f7579472f139008b36dbfd0e5b6fac"
     },
     {
+      "file": "tests/core-context-outcomes.test.mjs",
+      "sha256": "c85abfb9cc64837f2050e3105609ba976ee20cf0a7c16edf13ac55731b3bd8c7"
+    },
+    {
       "file": "tests/core.test.mjs",
       "sha256": "c8fdb75f8d9701bcc944f911ee02e5ac502098040df19a98d33b6d679b511368"
     },
     {
       "file": "tests/host-model.test.mjs",
       "sha256": "4744584547f7a6f38ec9e846522a3e919bf18ec31118a7cdb83864e0c0a8be85"
+    },
+    {
+      "file": "tests/intent-planning.test.mjs",
+      "sha256": "52435e1bdf24467d9d115b7e4e3e8caafd8c8a8a6b38959520f1474e0139c19a"
     },
     {
       "file": "tests/package.test.mjs",
@@ -222,6 +258,10 @@
     {
       "file": "tests/request-panel.test.mjs",
       "sha256": "6752ce069a13edf216ce7e82d8f2595e6ff06fba9c8e25ddacb3cb560796db0a"
+    },
+    {
+      "file": "tests/server-context.test.mjs",
+      "sha256": "9d103e9090c203c6804fa3a57a20a0c3eb66e8e0db72d5f821379c3647dfe76f"
     },
     {
       "file": "tests/server-model.test.mjs",
@@ -240,16 +280,20 @@
       "sha256": "021bef2d090e4eccd2e5691413b157ef7a76ed9b0aad95cde4886c3f146137d4"
     },
     {
+      "file": "tests/workspace-tools.test.mjs",
+      "sha256": "528759b48d85cead606ed1936959329e5815d7f7d286d00442990f0dfa410a1c"
+    },
+    {
       "file": "scripts/bootstrap.mjs",
       "sha256": "3391d7578bb1cda294e2711015b91a230168b433fedb4ad14db7a98c656f0b66"
     },
     {
       "file": "scripts/build-desktop.mjs",
-      "sha256": "9613f02f111ba2c1cdb87cc6c766dc5884db2dcb1eddc8b711e89c35283ecb1f"
+      "sha256": "4c75fea09583915e9c1afbbb54f6ca2b86293ca6cfefcaa47066977a202c8a8f"
     },
     {
       "file": "scripts/package.mjs",
-      "sha256": "b5a6fd5e6d31705b7fafa6f61115e8e64c04cb7a9918cc2d651be10f3badc629"
+      "sha256": "719862a2f55b207417221fd273163fb62df07f418535ed138ebe50a1d8acc7f7"
     },
     {
       "file": "scripts/replay.mjs",
@@ -258,6 +302,10 @@
     {
       "file": "scripts/start.mjs",
       "sha256": "daf7ec37eda3f4cc5e277b8cafb9cca419deb824791e5bc8050dd7da592c2811"
+    },
+    {
+      "file": "scripts/verify-packed.mjs",
+      "sha256": "08d1d0c852a47a1d9e86b31a54e35d6a039e70c3c3418c8e87f9b3757284fe46"
     },
     {
       "file": "scripts/verify.mjs",
