@@ -4,5 +4,9 @@ dist/
 .claude-flow/
 .claude/
 .swarm/
+docs/research/personal-model.md
+docs/evidence/run.json
+packages/*/verification.json
+packages/*/verification.tap
 .env*
 !.env.example

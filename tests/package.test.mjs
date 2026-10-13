@@ -27,6 +27,7 @@ test('clean source snapshot starts without dependency installation or private so
   try{
     const stage=path.join(root,'dist/source/lifeweave');await fs.cp(stage,path.join(dir,'source'),{recursive:true});
     const cwd=path.join(dir,'source');assert.equal(await fs.stat(path.join(cwd,'.private')).then(()=>true).catch(()=>false),false);
+    const repackaged=spawnSync(process.execPath,['scripts/package.mjs'],{cwd,encoding:'utf8'});assert.equal(repackaged.status,0,repackaged.stderr);
     child=spawn(process.execPath,['scripts/start.mjs'],{cwd,env:{PATH:path.dirname(process.execPath),LIFEWEAVE_PORT:'0',LIFEWEAVE_DATA_DIR:path.join(dir,'data')},stdio:['ignore','pipe','pipe']});
     const origin=await new Promise((resolve,reject)=>{let output='',errors='';const timer=setTimeout(()=>reject(new Error('Fresh source startup timed out')),10000);child.stderr.on('data',x=>errors+=x);child.once('exit',code=>{clearTimeout(timer);reject(new Error(`Fresh source startup exited ${code}: ${errors}`));});child.stdout.on('data',chunk=>{output+=chunk;for(const line of output.split('\n')){try{const message=JSON.parse(line);if(message.event==='lifeweave.ready'){clearTimeout(timer);resolve(message.url);}}catch{}}});});
     assert.equal((await fetch(origin)).status,200);assert.equal((await fetch(origin+'/.private/inputs/candidate-goals.json')).status,404);

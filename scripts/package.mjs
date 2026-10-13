@@ -16,8 +16,8 @@ for(const file of DOC_FILES)await add(`docs/${file}`,false);
 await tree('docs/adr',file=>/\.(md|json)$/.test(file));
 await tree('.github',file=>/\.ya?ml$/.test(file));
 for(const app of ['web','desktop'])await tree(`apps/${app}`,file=>/\.(mjs|js|html|css|json|svg|md|swift|plist)$/.test(file)||file.endsWith('-LICENSE'));
-for(const pkg of ['core','ui','connectors','planner']){await tree(`packages/${pkg}/src`);for(const file of ['package.json','README.md','LICENSE'])await add(`packages/${pkg}/${file}`);}
-await tree('scripts',file=>file.endsWith('.mjs'));await tree('tests',file=>/\.(mjs|ts)$/.test(file));await tree('examples',file=>file.endsWith('.json'));await tree('schemas',file=>file.endsWith('.json'));
+for(const pkg of ['core','ui','connectors','planner']){await tree(`packages/${pkg}/src`);if(await fs.stat(path.join(root,'packages',pkg,'scripts')).catch(()=>null))await tree(`packages/${pkg}/scripts`,file=>file.endsWith('.mjs'));for(const file of ['package.json','README.md','LICENSE'])await add(`packages/${pkg}/${file}`);}
+await tree('scripts',file=>file.endsWith('.mjs'));await tree('tests',file=>/\.(mjs|ts)$/.test(file));await tree('examples',file=>file.endsWith('.json'));if(await fs.stat(path.join(root,'schemas')).catch(()=>null))await tree('schemas',file=>file.endsWith('.json'));
 if(await fs.stat(path.join(root,'docs/assets/workspace.jpg')).catch(()=>null))await add('docs/assets/workspace.jpg');
 const canaries=['PRIVATE'+' KEY-----','/'+'Users'+'/'];
 try{const manifest=JSON.parse(await fs.readFile(path.join(root,'.private/inputs/manifest.json'),'utf8'));const serialized=JSON.stringify(manifest);for(const match of serialized.matchAll(/(?:\/Users\/[^"\\]+\/Downloads\/)([^"\\]+\.(?:pdf|docx))/g))canaries.push(match[1]);}catch{}
